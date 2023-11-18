@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package backend;
+option java_package = "com.aoe3leader.backend.proto";
+option java_outer_classname = "Deck";
+
+message DeckSave {
+    string deckName = 1;
+    int32 idCiv = 2;
+    string selectedLanguage = 3;
+    int32 radioType = 4;
+    int32 byAgeTab = 5;
+    int32 byTypeTab = 6;
+    int32 ageUpTab = 7;
+    int32 age2Option = 8;
+    int32 age3Option = 9;
+    int32 age4Option = 10;
+    int32 age5Option = 11;
+    string search = 12;
+    repeated int32 age1Array = 13;
+    repeated int32 age2Array = 14;
+    repeated int32 age3Array = 15;
+    repeated int32 age4Array = 16;
+}

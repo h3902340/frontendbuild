@@ -1,0 +1,91 @@
+.editor-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+
+
+.editor-container div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+
+.custom-icon-button {
+    margin-top: 3px;
+}
+
+::ng-deep .ql-toolbar.ql-snow {
+    background-color: #2c2c2c;
+    border-color: #444;
+}
+
+::ng-deep .ql-snow .ql-picker-label,
+::ng-deep .ql-snow .ql-picker-item {
+    color: #f5f5f5 !important;
+}
+
+::ng-deep .ql-snow .ql-picker-item.ql-selected,
+::ng-deep .ql-snow .ql-picker-label.ql-active {
+    background-color: #555 !important;
+}
+
+::ng-deep .ql-snow .ql-toolbar button,
+::ng-deep .ql-snow .ql-toolbar button svg {
+    fill: #f5f5f5;
+    color: #f5f5f5;
+}
+
+::ng-deep .ql-snow .ql-stroke {
+    stroke: #f5f5f5 !important;
+}
+
+::ng-deep .ql-snow .ql-toolbar button:hover {
+    background-color: #555;
+}
+
+::ng-deep .ql-snow .ql-toolbar button.ql-active {
+    background-color: #444;
+}
+
+
+
+::ng-deep .ql-snow .ql-picker-options {
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+}
+
+::ng-deep .ql-snow .ql-picker-item.ql-selected,
+::ng-deep .ql-snow .ql-picker-item:hover {
+    background-color: #555;
+}
+
+::ng-deep .ql-snow .ql-picker-item {
+    color: #f5f5f5 !important;
+}
+
+::ng-deep .ql-snow .ql-fill {
+    fill: #f5f5f5 !important;
+}
+
+::ng-deep .ql-container.ql-snow {
+    border: 1px solid #444;
+    /* ou toute autre valeur que vous souhaitez */
+}
+
+/* Pour la bordure du label du picker lorsqu'il est étendu */
+::ng-deep .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+    border-color: #444;
+}
+
+/* Pour la bordure des options du picker lorsqu'il est étendu */
+::ng-deep .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+    border-color: #444;
+}
+
+::ng-deep .ql-editor.ql-blank::before {
+    color: #f5f5f5;
+}

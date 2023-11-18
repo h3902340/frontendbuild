@@ -1,0 +1,188 @@
+<div class="full-page">
+    <div class="main-heading" style="margin-bottom: 5px;">Civilizations guides </div>
+    <div class="big-section">
+        <div class="left-div dark-bg">
+            <div class="civ-select-container">
+                <div class="civ-select">
+                    <label class="one-column-section">Civilization</label>
+                    <select class="form-select" id="game-mode" [(ngModel)]="selectedCivId"
+                        (ngModelChange)="updateSelectedCivId()">
+                        <option *ngFor="let civ of civs" [value]="civ">{{getNameCiv(civ)}}</option>
+                    </select>
+                </div>
+                <div class="edit-toggle">
+                    <mat-slide-toggle [(ngModel)]="editMode">
+                        <p class="toggle-text">Edit</p>
+                    </mat-slide-toggle>
+                </div>
+            </div>
+            <div class="civ-banner">
+                <img [src]="getLeftFlag()" alt="Civilization Flag" class="civ-flag">
+                <div class="civ-text">The {{getNameCiv(selectedCivId)}} guide </div>
+            </div>
+
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="panelStates.overview" (opened)="setPanelState('overview', true)"
+                    (closed)="setPanelState('overview', false)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="subhead">Civilization Overview</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="dark-inset" style="color:white">
+                        <app-editor [content]="editorContents.overview" [editMode]="editMode"
+                            (contentChanged)="onEditorContentChanged('overview', $event)"></app-editor>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="panelStates.bonus" (opened)="setPanelState('bonus', true)"
+                    (closed)="setPanelState('bonus', false)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="subhead">Civilization Bonus</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="dark-inset" style="color:white">
+                        <app-editor [content]="editorContents.bonus" [editMode]="editMode"
+                            (contentChanged)="onEditorContentChanged('bonus',$event)"></app-editor>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="panelStates.notes" (opened)="setPanelState('notes', true)"
+                    (closed)="setPanelState('notes', false)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="subhead">Essential Notes</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="dark-inset" style="color:white">
+                        <app-editor [content]="editorContents.notes" [editMode]="editMode"
+                            (contentChanged)="onEditorContentChanged('notes',$event)"></app-editor>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div>
+
+                <div class="containerHead">
+                    <span class="subhead ml-20">Meta build order</span>
+                    <button mat-raised-button *ngIf="editMode" class="icon-add md-20" (click)="addButton()">
+                        <mat-icon>add</mat-icon>
+                        Add
+                    </button>
+                </div>
+
+
+                <mat-expansion-panel [expanded]=" panelStates.buildorder" (opened)="setPanelState('buildorder', true)"
+                    (closed)="setPanelState('buildorder', false)">
+                    <mat-expansion-panel-header>
+
+                        <mat-panel-title>
+                            <div class="container">
+                                <div *ngIf="!editMode">
+
+
+                                    <button class="buildorerbutton" [class.active-button]="selectedBO === button.id"
+                                        *ngFor="let button of buttonsBOList" (click)="changeContent(button, $event)">
+                                        {{button.label}}
+                                    </button>
+                                </div>
+                                <div *ngIf="editMode">
+                                    <div *ngFor="let button of buttonsBOList" class="button-container"
+                                        [class.active-button]="selectedBO === button.id">
+                                        <button (click)="changeContent(button, $event)">
+                                            {{button.label}}
+                                        </button>
+                                        <button class="delete-button" (click)="deleteButton(button)">
+                                            <mat-icon aria-hidden="false"
+                                                aria-label="Delete icon">delete_forever</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <div class="dark-inset" style="color:white">
+                        <app-editor [content]="currentBuildOrderContent" [editMode]="editMode"
+                            (contentChanged)="currentBuildOrderId !== null ? onEditorContentChanged('buildOrder' + currentBuildOrderId, $event) : null">
+                        </app-editor>
+
+
+                    </div>
+                </mat-expansion-panel>
+            </div>
+            <div>
+                <div class="containerHead">
+                    <span class="subhead ml-20">Mach ups</span>
+                </div>
+                <mat-expansion-panel [expanded]="panelStates.matchup" (opened)="setPanelState('matchup', true)"
+                    (closed)="setPanelState('matchup', false)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div class="flag-container">
+                                <ng-container *ngFor="let civ of civs; let i = index">
+                                    <div class="flag-item">
+                                        <img [src]="getCircleFlag(civ)" (click)="setselectedCivMatchup(civ, $event)"
+                                            alt="{{getNameCiv(civ)}} flag" class="flag-image">
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="dark-inset" style="color:white">
+                        <!-- Ici, vous pourriez avoir un contenu conditionnel basé sur le bouton sélectionné -->
+                        <app-editor [content]="currentMatchupContent" [editMode]="editMode"
+                            (contentChanged)="selectedCivMatchup !== null ? onEditorContentChanged('matchup' + selectedCivMatchup, $event) : null">
+                        </app-editor>
+
+                    </div>
+                </mat-expansion-panel>
+            </div>
+        </div>
+
+
+
+        <div class="right-div">
+
+            <div class="dark-bg ">
+                <div class="containerHead">
+                    <span class="subhead-small ml-10">Recommended Homecity Decks</span>
+                </div>
+                <div *ngIf="buttonsBOList[currentIndex]">
+                    <div class="civ-banner2">
+                        <img [src]="getLeftFlag()" alt="Civilization Flag" class="civ-flag">
+                        <div class="civ-text"> Aggro Water play </div>
+
+                    </div>
+                    <div style="width :100% ; min-height: 16rem;" >
+                        <app-editor [content]="currentDeckContent" [editMode]="editMode"
+                        (contentChanged)="buttonsBOList[currentIndex].id !== null ? onEditorContentChanged('decks' + buttonsBOList[currentIndex].id, $event) : null"></app-editor>
+                    </div>
+
+                    <div class="carousel-container">
+                        <button (click)="move(-1)" class="arrow left-arrow">               
+                             <img src="assets\icons\arrow-left.png" 
+                            style="width: 50px; height: auto;">                             
+                        </button>
+                         <div class="item">
+                                {{buttonsBOList[currentIndex].label}}
+                         </div>
+                        <button (click)="move(1)" class="arrow right-arrow">
+                                 <img src="assets\icons\arrow-right.png" 
+                                 style="width: 50px; height: auto;"> 
+                         </button>
+                    </div>
+                </div>      
+                <div class="containerHead">
+                    <span class="subhead-small ml-10">Related Gameplay</span>
+                </div>                      
+                <app-youtube-embed [content]="currentYoutubeContent"  [editMode]="editMode" (contentChanged)="youtubeContentChanged($event)"></app-youtube-embed>
+
+
+            </div>
+        </div>
+    </div>
+</div>

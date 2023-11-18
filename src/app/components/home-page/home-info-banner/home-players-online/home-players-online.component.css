@@ -1,0 +1,43 @@
+@import 'src/app/components/home-page/home-shared-styles.css';
+
+.info-banner {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    height:  100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.players-online {
+    display: flex;
+    flex-direction: column;
+}
+
+.steam-icon {
+    width: clamp(0.8rem, 2vw, 1.2rem);
+    height: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+.player-counter {
+    display: flex;
+    gap: 5%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.player-online-text {
+    color:  white;
+    font-family: 'Source Sans 3';
+    font-weight: 400;
+    font-size: clamp(0.7rem, 2vw, 1.5rem);
+}
+
+.player-counter-text {
+    display: flex;
+    font-size: clamp(0.7rem, 2vw, 1.3rem);
+    color: white;
+}

@@ -1,0 +1,45 @@
+.font-size-title {
+    font-size: 24px;
+}
+
+.font-size-context {
+    font-size: 20px;
+}
+
+.white-text {
+    color: aliceblue;
+}
+
+.zero-margin-bottom {
+    margin-bottom: 0px;
+}
+
+.cost-text {
+    margin-left: 10px;
+}
+
+.golden-text {
+    color: rgb(255, 226, 62);
+}
+
+.zone-color {
+    background-color: rgb(52, 52, 52);
+    border: solid 1px black;
+}
+
+.age-up-option {
+    padding: 10px;
+    width: 250px;
+}
+
+.age-up-option:hover .zoom {
+    transform: scale(1.1);
+}
+
+.option-selected {
+    border: solid 3px rgb(250, 255, 218);
+}
+
+.zoom {
+    transition: transform .2s;
+}

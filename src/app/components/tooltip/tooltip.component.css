@@ -1,0 +1,39 @@
+.tooltip-description {
+    font-size: 16px;
+    text-align: left;
+    margin: 0px;
+    white-space: pre-line;
+}
+
+.tooltip-title {
+    font-size: 20px;
+    color: gold;
+    text-align: left;
+    margin-bottom: 2px;
+    margin-left: 4px;
+}
+
+.tooltip-resource-icon {
+    width: auto;
+    max-height: 35px;
+}
+
+.card-tooltip-show {
+    background: #000000c8;
+    padding: 5px;
+    border-radius: 3px;
+    display: inline-block;
+    position: absolute;
+    transform: translate(0%, -100%);
+    margin: 0px;
+    color: #fff;
+    top: 0px;
+    text-align: center;
+    font-size: 0.825rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-tooltip-hide {
+    display: none;
+}

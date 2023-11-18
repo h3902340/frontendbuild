@@ -1,0 +1,41 @@
+<div class="filter-row">
+    <div><span class="subheading pl-20 pr-20">Civilization game count</span></div>
+    <div class="align-right">
+        <div class="mr-20">>
+            <mat-slider style="width: 20rem;" discrete showTickMarks step="100" min="0" max="2500"
+                (change)="onSliderChange($event)">
+                <input value="0" matSliderStartThumb>
+                <input value="2500" matSliderEndThumb>
+            </mat-slider>
+        </div>
+        <div class="game-mode-select dark-bg-no-shadow mr-20">
+            <label for="patch">Patch</label>
+            <select class="form-select" id="game-mode" [(ngModel)]="selectedPatch">
+                <option *ngFor="let patch of patchs" [value]="patch.id">{{patch.number}}</option>
+            </select>
+        </div>
+        <div class="game-mode-select dark-bg-no-shadow">
+            <label for="game-mode">Game Mode</label>
+            <select class="form-select" id="game-mode" [(ngModel)]="selectedValue">
+                <option value=0 selected>All</option>
+                <option value=1>Solo</option>
+                <option value=8>2vs2</option>
+                <option value=9>3vs3</option>
+                <option value=10>4vs4</option>
+                <option value=2>Team</option>
+                <option value=7>Blitz</option>
+                <option value=3>Treaty</option>
+                <option value=4>DM</option>
+                <option value=5>EW Solo</option>
+                <option value=6>EW Team</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="player-profile-widget dark-bg">
+    <div class="player-info-wrapper pt-10" style="width: 100%;">
+        <div class="chart-container">
+            <canvas id="winrateChart" style="padding-left: 10px; display:block;"></canvas>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,229 @@
+<!--<div class="toggle-container">
+  <mat-slide-toggle [checked]="false"  class="slide-toggle"  (change)="toggleUnrated($event.checked)">Show Unrated Games</mat-slide-toggle>
+  <mat-slide-toggle [checked]="true"  class="slide-toggle"  (change)="toggle1v1($event.checked)">Show Ranked 1v1</mat-slide-toggle>
+  <mat-slide-toggle [checked]="true"  class="slide-toggle"  (change)="toggleTeam($event.checked)">Show Ranked Team Games</mat-slide-toggle>
+</div>
+-->
+<div class="match-history-widget mt-40">
+  <div class="filter-row">
+    <div style="display: flex; align-items: flex-start; width: 100%;">
+      <div class="main-heading" style="margin-bottom: 5px;">Match History</div>
+      <p class="last-update-text">Last Update: {{lastUpdateDateString}}</p>
+      <!--app-searchbar class="search-match-history" (searchChanged)="onSearchChanged($event)" /-->
+      <div class="game-mode-select dark-bg-no-shadow" style="align-self: flex-end; margin-left: 0px;">
+        <label for="game-mode">Game Mode</label>
+        <select class="form-select" id="game-mode" [(ngModel)]="selectedValue">
+          <option value=0 selected>All</option>
+          <option value=1>Solo</option>
+          <option value=8>2vs2</option>
+          <option value=9>3vs3</option>
+          <option value=10>4vs4</option>
+          <option value=2>Team</option>
+          <option value=7>Blitz</option>
+          <option value=3>Treaty</option>
+          <option value=4>DM</option>
+          <option value=5>EW Solo</option>
+          <option value=6>EW Team</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="match-history-widget-inner dark-bg">
+    <div class="table-responsive">
+      <table class="table-match table-dark mt-15">
+        <thead>
+          <tr>
+            <th class="light-th-center" scope="col">{{timeText}}</th>
+            <th class="light-th-center" scope="col">{{alliesText}}</th>
+            <th class="light-th-center" scope="col">{{mapText}}</th>
+            <th class="light-th-center" scope="col">{{opponentText}}</th>
+            <th class="light-th-center" scope="col">{{durationText}}</th>
+            <th class="light-th-center" scope="col"></th>
+          </tr>
+          <tr class="tr-spacer"></tr>
+          <tr class="tr-spacer"></tr>
+          <tr class="manual-border"></tr>
+        </thead>
+        <tbody *ngFor="let element of matchArray; let i = index;" (click)="showHideRow(i)">
+          <ng-container>
+            <tr class="tr-spacer"></tr>
+            <tr class="tr-spacer"></tr>
+            <tr>
+              <!-- Date/Time -->
+              <td class="td-center-date" style="text-align: center; width: 400px;">
+                <div>{{ element.StartDate.toLocaleDateString('en-GB') }}</div>
+                <div>{{ element.StartDate.toLocaleTimeString('en-GB') }}</div>
+              </td>
+              <!-- Left Player Section -->
+              <td class="custom-space-left table-fixed-column">
+                <div class="td-rows left" [class.green]="element.isWin" [class.red]="!element.isWin">
+                  <app-match-history-player [PlayerList]="element.PlayerList" [isWin]="element.isWin" [idPlayer]="idPlayer"></app-match-history-player>
+                </div>
+              </td>
+              <!-- Map Section -->
+              <td class="custom-space" style="width: 150px;">
+                <div class="map-col">
+                  <div class="game-mode">{{ getGameMode(element.gameMode) }}</div>
+                  <img [src]="element.MapUrl" class="map" alt="..." />
+                  <div class="left" [class.green]="element.isWin" [class.red]="!element.isWin"></div>
+                  <div class="right" [class.green]="!element.isWin" [class.red]="element.isWin"></div>
+                </div>
+              </td>
+              <!-- Right Player Section -->
+              <td class="custom-space-right table-fixed-column">
+                <div class="td-rows right" [class.green]="!element.isWin" [class.red]="element.isWin">
+                  <app-match-history-opponent [OpponentList]="element.OpponentList" [isWin]="!element.isWin"
+                    [idPlayer]="idPlayer"></app-match-history-opponent>
+                </div>
+              </td>
+              <!-- Duration -->
+              <td class="td-center-duration" style="text-align: center; width: 400px;">
+                <div class="duration">
+                  <div class="duration-text">
+                    {{ element.Length }}
+                  </div>
+                  <mat-icon [matTooltip]="moreText" class="expand-icon" [id]="'expand'+i">expand_less</mat-icon>
+                </div>
+              </td>
+            </tr>
+            <tr class="tr-spacer"></tr>
+            <tr>
+              <td class="map-name" colspan="5">{{ element.MapName }}</td>
+            </tr>
+            <tr class="tr-spacer"></tr>
+            <tr class="tr-spacer"></tr>
+            <tr class="manual-border"></tr>
+            <tr class="tr-spacer"></tr>
+            <tr class="tr-spacer"></tr>
+            <tr class="tr-spacer"></tr>
+            <tr>
+              <td colspan="6">
+                <div class="detail-div" [id]="'hidden_row' + i">
+                  <table class="table-detail" style="border: solid 1px white; width: 100%;">
+                    <tr style="border: solid 1px white;">
+                      <th class="detail-column-header" style="border: solid 1px white;">{{playerNameText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{scoreEconomicText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{scoreMilitaryText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{scoreTotalText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{buildingLostText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{buildingRazedText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{unitsConvertedText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{unitsKilledText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{unitsLostText}}</th>
+                      <th class="detail-column-header" style="border: solid 1px white;">{{trophyText}}</th>
+                    </tr>
+                    <tr *ngFor="let player of element.PlayerList" style="border: solid 1px white;">
+                      <td class="detail-text-player">{{player.playerName}}</td>
+                      <td class="detail-text">{{player.scoreEconomic}}</td>
+                      <td class="detail-text">{{player.scoreMilitary}}</td>
+                      <td class="detail-text">{{player.scoreTotal}}</td>
+                      <td class="detail-text">{{player.buildingLost}}</td>
+                      <td class="detail-text">{{player.buildingRazed}}</td>
+                      <td class="detail-text">{{player.unitsConverted}}</td>
+                      <td class="detail-text">{{player.unitsKilled}}</td>
+                      <td class="detail-text">{{player.unitsLost}}</td>
+                      <td class="badge-icons" style="border: none;">
+                        <img [matTooltip]="isHigestScoreTip" *ngIf="player.isHigestScore"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/fame.png">
+                        <img [matTooltip]="isLeastResourcesTip" *ngIf="player.isLeastResources"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_least_resources.png">
+                        <img [matTooltip]="isMostImprovementsTip" *ngIf="player.isMostImprovements"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_tech.png">
+                        <img [matTooltip]="isMostKillsTip" *ngIf="player.isMostKills"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_kills.png">
+                        <img [matTooltip]="isMostLossesTip" *ngIf="player.isMostLosses"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_losses.png">
+                        <img [matTooltip]="isMostMilitaryTip" *ngIf="player.isMostMilitary"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_largest_army.png">
+                        <img [matTooltip]="isMostResourcesTip" *ngIf="player.isMostResources"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_resources.png">
+                        <img [matTooltip]="isMostTreasuresTip" *ngIf="player.isMostTreasures"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_treasures.png">
+                      </td>
+                    </tr>
+                    <tr *ngFor="let player of element.OpponentList" style="border: solid 1px white;">
+                      <td class="detail-text-player">{{player.playerName}}</td>
+                      <td class="detail-text">{{player.scoreEconomic}}</td>
+                      <td class="detail-text">{{player.scoreMilitary}}</td>
+                      <td class="detail-text">{{player.scoreTotal}}</td>
+                      <td class="detail-text">{{player.buildingLost}}</td>
+                      <td class="detail-text">{{player.buildingRazed}}</td>
+                      <td class="detail-text">{{player.unitsConverted}}</td>
+                      <td class="detail-text">{{player.unitsKilled}}</td>
+                      <td class="detail-text">{{player.unitsLost}}</td>
+                      <td class="badge-icons" style="border: none;">
+                        <img [matTooltip]="isHigestScoreTip" *ngIf="player.isHigestScore"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/fame.png">
+                        <img [matTooltip]="isLeastResourcesTip" *ngIf="player.isLeastResources"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_least_resources.png">
+                        <img [matTooltip]="isMostImprovementsTip" *ngIf="player.isMostImprovements"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_tech.png">
+                        <img [matTooltip]="isMostKillsTip" *ngIf="player.isMostKills"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_kills.png">
+                        <img [matTooltip]="isMostLossesTip" *ngIf="player.isMostLosses"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_losses.png">
+                        <img [matTooltip]="isMostMilitaryTip" *ngIf="player.isMostMilitary"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_largest_army.png">
+                        <img [matTooltip]="isMostResourcesTip" *ngIf="player.isMostResources"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_resources.png">
+                        <img [matTooltip]="isMostTreasuresTip" *ngIf="player.isMostTreasures"
+                          style="width: 30px; margin-right: 3px;"
+                          src="assets/Data/wpfg/resources/images/icons/post_game/awards_most_treasures.png">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <div *ngIf="isLoading" class="spinner-container">
+        <mat-progress-spinner strokeWidth="4" [diameter]="50" color="primary" mode="indeterminate">
+        </mat-progress-spinner>
+      </div>
+      <div class="navigation-panel-wrapper">
+        <div class="control-panel">
+          <ul>
+            <li>
+              <button type="button" class="ctrl-btn" (click)="firstPage()"><i
+                  class="fa-solid fa-backward-step"></i></button>
+            </li>
+            <li>
+              <button type="button" class="ctrl-btn reverse" (click)="previousPage()"><i
+                  class="fa-solid fa-play "></i></button>
+            </li>
+            <li><input type="number" min="1" oninput="validity.valid||(value='');" [(ngModel)]="pagePlusOne"
+                class="ctrl-input" (keyup.enter)="goToPage()"></li>
+            <li>
+              <button type="button" class="ctrl-btn" (click)="nextPage()"><i class="fa-solid fa-play"></i></button>
+            </li>
+            <li>
+              <button type="button" class="ctrl-btn" (click)="lastPage()"><i
+                  class="fa-solid fa-forward-step"></i></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="number-pages pb-10">
+        {{showPage}} of {{showPageMax}} pages
+      </div>
+    </div>
+  </div>
+</div>

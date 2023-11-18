@@ -1,0 +1,133 @@
+@import 'src/app/components/home-page/home-shared-styles.css';
+
+.hall-of-fame {
+    display: flex;
+    margin-top: 1%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, #000 100%) padding-box, linear-gradient(to top, var(--yellow-brand), transparent 40%) border-box;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    overflow: hidden;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    justify-content: flex-end;
+    margin-right: 2%;
+}
+
+.right {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.cup {
+    max-width: clamp(2rem, 4vw, 4rem);
+    max-height: clamp(2rem, 4vw, 4rem);
+    width: auto;
+    height: auto;
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.text1 {
+    color:white;
+    font-family: "sans-serif";
+    font-size: clamp(1rem, 2vw, 1.8rem);
+    margin-bottom: clamp(-0.3rem, 2vw, -0.8rem);
+}
+
+.text2 {
+    color: white;
+    font-family: "kirsty";
+    font-size: clamp(1.7rem, 2vw, 3rem);
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.right-container:hover {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 3px 15px rgba(255, 255, 255, 0.4);
+}
+
+.text3 {
+    background: linear-gradient(0deg, #DDB556, #FCF0AE);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: "Trajan";
+    font-size: clamp(0.6rem, 2vw, 1.2rem);
+    margin: 0 auto;
+}
+
+.icon {
+    width: clamp(3.5rem, 5vw, 10rem);
+    height: clamp(3.5rem, 5vw, 10rem);
+    margin-top: 2%;
+}
+
+.tournament-name {
+    margin-top: 5%;
+}
+
+.text4 {
+    display: flex;
+    color: white;
+    font-family: "Trajan";
+    font-size: clamp(0.4rem, 2vw, 1rem);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.list {
+    display: flex;
+    justify-content: space-around;
+    flex: 1;
+}
+
+@media only screen and (max-width: 1000px) {
+    .left {
+        margin-right: 0.5%;
+    }
+
+    .right-container {
+        padding: 0.3%;
+    }
+    
+    .hall-of-fame {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left {
+        margin-left: 1%;
+        margin-top: 1%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-container {
+        margin-left: 2%;
+    }
+
+    .cup {
+        max-width: clamp(2rem, 5vw, 6rem);
+        max-height: clamp(2rem, 5vw, 6rem);
+        width: auto;
+        height: auto;
+    }
+}

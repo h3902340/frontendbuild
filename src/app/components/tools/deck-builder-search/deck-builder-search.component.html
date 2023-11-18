@@ -1,0 +1,6 @@
+<div class="tabcontent zone-color">
+    <div class="card-grid" *ngFor="let card of cardPool;">
+        <app-deck-builder-card [card]="card" [cardHeight]="70"
+            (onCardClickedEvent)="onClickCard(card)"></app-deck-builder-card>
+    </div>
+</div>

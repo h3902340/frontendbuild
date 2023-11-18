@@ -1,0 +1,341 @@
+.full-page {
+    margin: auto;
+    width: 85%;
+}
+
+.big-section {
+    display: flex;
+    width: 100%;
+    /* Vous pouvez définir une autre largeur si nécessaire */
+    font-family: "Trajan", serif;
+    font-variant: small-caps;
+}
+
+.left-div {
+    width: 70%;
+}
+
+.right-div {
+    width: 30%;
+    margin-left: 10px;
+}
+
+
+/* civ Select Start */
+.civ-select-container {
+    display: flex;
+    align-items: center;
+    /* Places maximum space between children. This will effectively push `civ-select` to the left and `edit-toggle` to the right. */
+
+    padding: 10px 14px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.civ-select {
+    display: flex;
+    align-items: center;
+    width: 40%;
+}
+
+.edit-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.toggle-text {
+    color: aliceblue;
+    position: relative;
+    top: 8px;
+    margin-right: 20px;
+}
+
+.civ-select label {
+    display: block;
+    width: 200px;
+}
+
+.civ-select select#game-mode {
+    background: rgba(37, 37, 37, .95);
+    color: #fcf0ae;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-size: 16px 12px !important;
+    background-repeat: no-repeat !important;
+    background-position: right .75rem center !important;
+    border: 1.5px solid #fcf0ae
+}
+
+.civ-select select#game-modeoption {
+    background: #252525;
+    color: #fcf0ae;
+}
+
+@media only screen and (max-width: 800px) {
+    .civ-select {
+        width: 100%
+    }
+}
+
+/* civ select end */
+
+.civ-banner {
+    width: 100%;
+    background-image: url("/assets/banner_brit.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    height: 100px;
+    /* Changez la hauteur selon vos besoins */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+    /* Espacement à gauche et à droite */
+    color: white;
+}
+
+.civ-banner2 {
+    width: 100%;
+    background-color: rgb(54, 21, 84);
+    height: 40px;
+    /* Changez la hauteur selon vos besoins */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Espacement à gauche et à droite */
+    color: white;
+}
+
+.civ-flag {
+    max-height: 100%;
+    height: 100%;
+    width: auto;
+}
+
+.civ-banner .civ-text {
+    font-size: 24px;
+}
+
+.civ-banner2 .civ-text {
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.subhead {
+    color: #fcf0ae;
+    font-family: "Trajan", serif;
+    font-variant: small-caps;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.subhead-small {
+    color: #fcf0ae;
+    font-family: "Trajan", serif;
+    font-variant: small-caps;
+    font-size: 18px;
+    font-style: normal;
+}
+
+
+
+mat-expansion-panel,
+mat-expansion-panel-header,
+mat-panel-description,
+mat-panel-title {
+    background-color: transparent !important;
+}
+
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+    flex-basis: auto !important;
+}
+
+.mat-expansion-panel-header {
+    height: auto !important;
+}
+
+.flag-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flag-item {
+    pointer-events: none;
+}
+
+
+.flag-image {
+    max-width: 50px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.flag-image:hover {
+    transform: scale(1.2);
+}
+
+.flag-image.new-row {
+    margin-top: 10px;
+}
+
+.container {
+    display: flex;
+    /* Transforme ce conteneur en conteneur flex */
+    flex-wrap: wrap;
+    /* Permet aux éléments enfants de passer à la ligne lorsqu'ils dépassent l'espace disponible */
+    gap: 10px;
+    /* Espace entre les boutons, nécessite un navigateur relativement récent. Sinon, utilisez des marges */
+}
+
+.containerHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px;
+    padding-right: 17px;
+    /* Cette ligne va aligner verticalement les éléments dans le conteneur */
+}
+
+/* Style de vos boutons */
+.buildorerbutton {
+    display: inline-flex;
+    /* Ajuste le bouton à la taille de son contenu */
+    margin: 5px;
+    padding: 8px;
+    /* Espacement intérieur autour du texte, ajustez selon vos préférences */
+    background-color: #303030;
+    color: #FFFFFF;
+    border-radius: 10px;
+    border: none;
+    /* Élimine toute bordure */
+    box-shadow: none;
+
+    outline: none;
+
+
+
+    text-align: center;
+    font-family: Trajan Pro;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.active-button {
+    display: inline-flex;
+    /* Ajuste le bouton à la taille de son contenu */
+    margin: 5px;
+    padding: 8px;
+    /* Espacement intérieur autour du texte, ajustez selon vos préférences */
+    background-color: #303030;
+    color: #fcf0ae;
+    border-radius: 10px;
+    border: none;
+    /* Élimine toute bordure */
+    box-shadow: none;
+
+    outline: none;
+
+
+
+    text-align: center;
+    font-family: Trajan Pro;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.button-container {
+    display: inline-flex;
+    align-items: center;
+    margin: 5px;
+    padding: 8px;
+    background-color: #303030;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    text-align: center;
+    font-family: Trajan Pro;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.button-container>button {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.button-container.active-button>button {
+    color: #fcf0ae;
+}
+
+.delete-button {
+    color: #fcf0ae;
+    margin-left: 8px;
+    /* ajuster l'espacement */
+}
+
+.delete-button mat-icon {
+    font-size: 18px;
+    margin-top: 6px;
+}
+
+mat-divider {
+    height: 20px;
+    /* ajuster la hauteur selon votre besoin */
+    margin: 0 5px;
+    background-color: white !important;
+    color: white !important;
+}
+
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.item {
+    flex: 1;
+    border: 3px solid #fcf0ae;
+    text-align: center;
+    color: #fcf0ae;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 10px;
+}
+
+.arrow {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.arrow:hover {
+    color: gray;
+}

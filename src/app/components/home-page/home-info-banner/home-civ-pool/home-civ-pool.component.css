@@ -1,0 +1,67 @@
+@import 'src/app/components/home-page/home-shared-styles.css';
+
+.info-banner {
+    display: flex;
+    flex: 1;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    align-items: center;
+}
+
+.free-civ-div {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    gap: 5%;
+}
+
+.free-civ-text {
+    color: white;
+    font-family: 'Kanit Bold';
+    font-size: clamp(0.7rem, 2vw, 1.6rem);
+}
+
+.current-rotation {
+    color: white;
+    font-size: clamp(0.7rem, 2vw, 1.3rem);
+    font-family: 'Source Sans 3';
+}
+
+.flag-div {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    gap: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.civ-flag {
+    max-height: clamp(1.2rem, 3vw, 4rem);
+    max-width: clamp(1.2rem, 3vw, 4rem);
+    width: auto;
+    height: auto;
+}
+
+@media only screen and (max-width: 900px) {
+    .info-banner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .current-rotation {
+        display: none;
+    }
+
+    .flag-div {
+        justify-content: space-around;
+        gap: 10%;
+    }
+
+    .civ-flag {
+        height: clamp(1.3rem, 4vw, 1.5rem);
+        width: clamp(1.3rem, 4vw, 1.5rem);
+    }
+}

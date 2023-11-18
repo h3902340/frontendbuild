@@ -1,0 +1,24 @@
+<div id="twitch panel" class="mt-10">
+    <h1 class="main-heading">Twitch Live <img class="media-icon" src="assets/icons/twitch-white-logo.png"></h1>
+    <div class="video" *ngIf="this.name">
+        <app-home-twitch-video ngSkipHydration="true" [name]="this.name"></app-home-twitch-video>
+    </div>
+    <div class="streamer-container">
+        <mat-grid-list class="video-list" [cols]="cols" rowHeight="1:1" gutterSize="1%">
+            <mat-grid-tile *ngFor="let stream of streams; index as i">
+                <div [ngClass]="{'streamer': name !== stream.user_name, 'streamer_selected': name === stream.user_name}"
+                    (click)="updateName(stream)">
+                    <img class="thumbnail" src={{getImageUrl(stream)}}>
+                    <div class="bottom-container">
+                        <img class="avatar" src="{{stream.profile_image_url}}">
+                        <div class="title-container">
+                            <div class="title responsive-text-ellipsis">{{stream.title}}</div>
+                            <div class="content-creator responsive-text-ellipsis">{{stream.user_name}}</div>
+                            <div class="grey-text responsive-text">{{stream.viewer_count}} viewers</div>
+                        </div>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

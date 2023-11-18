@@ -1,0 +1,9 @@
+@import '../shared-styles.css';
+
+.player-name-container {
+    flex: 1;
+    align-items: flex-start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

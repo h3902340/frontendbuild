@@ -1,0 +1,23 @@
+<span #root class="card-tooltip-hide" [style.left.px]="currentTooltipLeft" [style.right.px]="currentTooltipRight"
+    [style.min-width.px]="tooltipWidth" [style.max-width.px]="tooltipWidth" [style.top.px]="currentTooltipTop"
+    [style.transform]="currentTransform">
+    <p class="tooltip-title">{{card.displayName}}</p>
+    <p class="tooltip-description" *ngIf="card.pop > 0">• Pop: {{card.pop}} <img
+            src="assets/Data/wpfg/resources/images/hud/stat_icon_building.png"></p>
+    <p *ngIf="card.foodCost > 0 || card.woodCost > 0 || card.coinCost > 0 || card.influenceCost > 0 || card.shipmentCost > 1"
+        class="tooltip-description">
+        <span>• </span>
+        <span *ngIf="card.foodCost > 0">{{card.foodCost}} <img class="tooltip-resource-icon" [src]="foodIcon"><span
+                *ngIf="card.woodCost > 0">, </span></span>
+        <span *ngIf="card.woodCost > 0">{{card.woodCost}} <img class="tooltip-resource-icon" [src]="woodIcon"><span
+                *ngIf="card.coinCost > 0">, </span></span>
+        <span *ngIf="card.coinCost > 0">{{card.coinCost}} <img class="tooltip-resource-icon" [src]="goldIcon"><span
+                *ngIf="card.influenceCost > 0">, </span></span>
+        <span *ngIf="card.influenceCost > 0">{{card.influenceCost}} <img class="tooltip-resource-icon"
+                [src]="influenceIcon"></span>
+        <span *ngIf="card.shipmentCost > 1">{{card.shipmentCost}} <img class="tooltip-resource-icon"
+                [src]="shipmentIcon"></span>
+    </p>
+    <p class="tooltip-description" *ngIf="card.rolloverText">• <span [innerHTML]="card.rolloverText"></span></p>
+    <p class="tooltip-description" *ngFor="let detail of card.details">• <span [innerHTML]="detail.text"></span></p>
+</span>

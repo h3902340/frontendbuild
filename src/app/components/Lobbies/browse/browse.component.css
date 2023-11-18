@@ -1,0 +1,57 @@
+.game-count {
+    color: aliceblue;
+    text-align: right;
+    padding-right: 2rem;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.bottom-margin {
+    margin-bottom: 10px;
+}
+
+.toggle-text {
+    color: aliceblue;
+    position: relative;
+    top: 8px;
+}
+
+.width-98pc,
+mat-slider.width-98pc {
+    width: 98%;
+}
+
+.table {
+    --bs-table-striped-bg: #36342ca4 !important;
+}
+
+.table td {
+    vertical-align: middle !important;
+    font-weight: normal;
+    font-family: "Open Sans", sans-serif;
+    padding: 12px;
+}
+
+.table th {
+    vertical-align: middle !important;
+    font-weight: normal;
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.flag {
+    width: 25px;
+    margin-right: 10px;
+    padding: 2px;
+}
+
+.empty-slot {
+    border: dashed 1px white; 
+    text-align: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

@@ -1,0 +1,213 @@
+<div style="border: solid 1px white; padding: 10px;">
+    <div style="display: flex; border-bottom: solid 1px white; padding-bottom: 10px;">
+        <div style="display: flex; flex-direction: column; width: 600px; min-width: 600px;">
+            <div style="display: flex;">
+                <div style="position: relative; width: 170px; min-width: 170px;">
+                    <app-deck-builder-card [card]="avatarCard" [cardHeight]="170"></app-deck-builder-card>
+                </div>
+                <div>
+                    <p class="white-text" style="font-size: 30px; margin-left: 5px;">{{unit.name}} ({{unit.protoKey}})
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap;">
+                        <div style="display: flex; padding: 5px;">
+                            <img class="hud-size-large" [src]="hpSrc">
+                            <p class="white-text" style="font-size: 24px;">{{unit.initialHP}}/{{unit.maxHP}}
+                            </p>
+                        </div>
+                        <div *ngIf="currentSpeed > 0" style="display: flex; padding: 5px;">
+                            <img class="hud-size-large" [src]="speedSrc">
+                            <p class="white-text" style="font-size: 24px;">{{currentSpeed.toFixed(2)}}</p>
+                        </div>
+                        <div style="padding: 5px;" *ngFor="let armor of unit.armors">
+                            <div *ngIf="armor.amount > 0" style="display: flex;">
+                                <img class="hud-size-large" [src]="armor.src">
+                                <p class="white-text" style="font-size: 24px;">{{armor.amount * 100}}%</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; padding: 5px;" *ngIf="isCoverMode">
+                            <img class="hud-size-large" [src]="armorRangedSrc">
+                            <p class="white-text" style="font-size: 24px;">50%</p>
+                        </div>
+                        <div style="display: flex; padding: 5px;" *ngIf="isCoverMode">
+                            <img class="hud-size-large" [src]="armorSiegeSrc">
+                            <p class="white-text" style="font-size: 24px;">50%</p>
+                        </div>
+                        <div style="display: flex; padding: 5px;">
+                            <img class="hud-size-large" [src]="losSrc">
+                            <p class="white-text" style="font-size: 24px;">{{unit.los}}</p>
+                        </div>
+                    </div>
+                    <div style="display: flex;">
+                        <div style="display: flex; padding: 5px;" *ngIf="unit.foodCost > 0">
+                            <img class="hud-size-large" [src]="foodSrc">
+                            <p class="white-text" style="align-self: center; font-size: 24px;">{{unit.foodCost}}
+                            </p>
+                        </div>
+                        <div style="display: flex; padding: 5px;" *ngIf="unit.woodCost > 0">
+                            <img class="hud-size-large" [src]="woodSrc">
+                            <p class="white-text" style="align-self: center; font-size: 24px;">{{unit.woodCost}}
+                            </p>
+                        </div>
+                        <div style="display: flex; padding: 5px;" *ngIf="unit.goldCost > 0">
+                            <img class="hud-size-large" [src]="goldSrc">
+                            <p class="white-text" style="align-self: center; font-size: 24px;">{{unit.goldCost}}
+                            </p>
+                        </div>
+                        <div style="display: flex; padding: 5px;" *ngIf="unit.influenceCost > 0">
+                            <img class="hud-size-large" [src]="influenceSrc">
+                            <p class="white-text" style="align-self: center; font-size: 24px;">{{unit.influenceCost}}
+                            </p>
+                        </div>
+                        <div style="display: flex; padding: 5px;" *ngIf="unit.pop > 0">
+                            <img class="hud-size-large" [src]="houseSrc">
+                            <p class="white-text" style="align-self: center; font-size: 24px;">{{unit.pop}}
+                            </p>
+                        </div>
+                        <div style="display: flex; padding: 5px;">
+                            <img style="width: 40px;" [src]="unit.allowAgeSrc">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="unit.gatherRates.length > 0" style="margin-top: 5px;">
+                <!--p class="white-text" style="align-self: center; font-size: 30px;">{{stringTable[126605]}}:</p-->
+                <div style="margin-top: auto; padding-top: 10px; display: flex;">
+                    <div *ngFor="let gatherRate of unit.gatherRates; let i = index;" style="display: flex;">
+                        <img class="zoom" style="margin-left: 20px; width: 40px;" [src]="gatherRate.src"
+                            [matTooltip]="gatherRate.tooltip" [matTooltipPosition]="'above'">
+                        <p class="white-text" style="align-self: center; margin-left: 5px;">{{gatherRate.amount}}</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="unit.buildRates.length > 0" style="margin-top: 5px;">
+                <!--p class="white-text" style="align-self: center; font-size: 30px;">{{stringTable[126609]}}:</p-->
+                <div style="margin-top: auto; padding-top: 10px; display: flex;">
+                    <div *ngFor="let buildRate of unit.buildRates; let i = index;" style="display: flex;">
+                        <img class="zoom" style="margin-left: 20px; width: 40px;" [src]="buildRate.src"
+                            [matTooltip]="buildRate.tooltip" [matTooltipPosition]="'above'">
+                        <p class="white-text" style="align-self: center; margin-left: 5px;">{{buildRate.amount}}</p>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-top: 10px; display: flex;">
+                <div *ngFor="let posture of unit.postures" style="padding: 5px;">
+                    <app-deck-builder-card #postures [card]="posture.card" [cardHeight]="80" [hideTick]="true"
+                        (onCardClickedEvent)="onTacticsClicked($event, posture)"></app-deck-builder-card>
+                </div>
+            </div>
+            <div style="padding-top: 10px; display: flex;">
+                <div *ngFor="let ability of unit.abilities;" style="padding: 5px;">
+                    <app-deck-builder-card [card]="ability" [cardHeight]="80" [hideTick]="true"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="border-left: dashed 1px white; margin-left: 5px; padding-left: 5px;">
+            <div *ngIf="unit.healRate">
+                <p class="white-text">{{healRangeText}}</p>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <div style="display: flex; padding: 5px;">
+                        <p class="white-text">{{unit.healRate.amount}}/s</p>
+                        <img class="hud-size" [src]="unit.healRate.src">
+                    </div>
+                    <div style="display: flex; padding: 5px;">
+                        <p class="white-text">{{unit.healRate.range}}</p>
+                        <img class="hud-size" [src]="rangeSrc">
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let attack of unit.attackInfos">
+                <div [hidden]="attack.hidden">
+                    <p class="white-text">{{attack.name}}:</p>
+                    <div style="display: flex; flex-wrap: wrap;">
+                        <div style="display: flex; padding: 5px;">
+                            <p class="white-text">{{attack.amount}}</p>
+                            <img class="hud-size" [src]="attack.src">
+                        </div>
+                        <div style="display: flex; padding: 5px;" *ngIf="attack.damageArea">
+                            <p class="white-text">{{attack.damageArea}}</p>
+                            <img class="hud-size" [src]="damageAreaSrc">
+                        </div>
+                        <div style="display: flex; padding: 5px;" *ngIf="attack.range">
+                            <p class="white-text">{{attack.range}}</p>
+                            <img class="hud-size" [src]="rangeSrc">
+                        </div>
+                        <div style="display: flex; padding: 5px;">
+                            <p class="white-text">{{attack.rof}}</p>
+                            <img class="hud-size" [src]="rofSrc">
+                        </div>
+                        <div style="padding: 5px;" *ngFor="let bonus of attack.damageBonuses">
+                            <div style="display: flex;" *ngIf="bonus.amount != 1">
+                                <p class="white-text">{{bonus.amount}}x</p>
+                                <img class="zoom hud-size" [src]="bonus.src" [matTooltip]="bonus.tooltip"
+                                    [matTooltipPosition]="'above'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div>
+            <div class="game-mode-select dark-bg-no-shadow" style="width: 330px; margin-right: 0px;">
+                <label class="one-column-section">{{animText}}</label>
+                <select class="form-select" id="game-mode" (change)="onSelectAnimation($event)"
+                    [value]="selectedAnimation">
+                    <option *ngFor="let anim of currentPosture.anims" [value]="anim">
+                        {{anim}}
+                    </option>
+                </select>
+            </div>
+            <app-unit-viewer #viewer [modelPath]="modelPath" [attachments]="attachments"></app-unit-viewer>
+        </div>
+        <div style="padding-top: 10px;">
+            <div class="tab">
+                <button #tabs *ngFor="let upgrade of unit.upgrades; let i = index;"
+                    [matTooltip]="upgrade.buildingTooltip" (click)="selectUpgradeTab(i)" style="width: 60px;">
+                    <img class="img-in-tab" [src]="upgrade.buildingSrc">
+                </button>
+            </div>
+            <div #tabcontents *ngFor="let upgrade of unit.upgrades; let i = index;" name="tabcontent"
+                class="tabcontent zone-color">
+                <div class="card-grid" *ngFor="let card of upgrade.cards;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="70"
+                        (onCardClickedEvent)="onUpgradeClicked(card)"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div *ngIf="unit.age2ShadowTechs.length > 0" style="display: flex; align-items: center; padding-top: 10px;">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <div *ngFor="let tech of unit.age2ShadowTechs;" style="padding: 5px;">
+                        <app-deck-builder-card [card]="tech" [cardHeight]="70"
+                            [hideTick]="true"></app-deck-builder-card>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="unit.age3ShadowTechs.length > 0" style="display: flex; align-items: center; padding-top: 10px;">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <div *ngFor="let tech of unit.age3ShadowTechs;" style="padding: 5px;">
+                        <app-deck-builder-card [card]="tech" [cardHeight]="70"
+                            [hideTick]="true"></app-deck-builder-card>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="unit.age4ShadowTechs.length > 0" style="display: flex; align-items: center; padding-top: 10px;">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <div *ngFor="let tech of unit.age4ShadowTechs;" style="padding: 5px;">
+                        <app-deck-builder-card [card]="tech" [cardHeight]="70"
+                            [hideTick]="true"></app-deck-builder-card>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="unit.age5ShadowTechs.length > 0" style="display: flex; align-items: center; padding-top: 10px;">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <div *ngFor="let tech of unit.age5ShadowTechs;" style="padding: 5px;">
+                        <app-deck-builder-card [card]="tech" [cardHeight]="70"
+                            [hideTick]="true"></app-deck-builder-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

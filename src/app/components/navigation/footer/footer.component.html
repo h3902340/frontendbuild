@@ -1,0 +1,84 @@
+<!-- desktop footer start -->
+<footer class="desktop-footer">
+    <div class="row container mx-auto">
+        <!-- Image home -->
+        <a class="col" href="index.html">
+            <img class="footer-img" src="../../assets/footer-logo.png" alt="..">
+        </a>
+        <!-- Content -->
+        <div class="col">
+            <ul class="nav flex-column">
+                <li class="nav-item title">Content
+                    <hr class="nav-line">
+                </li>
+                <li class="nav-item" *ngFor="let contents of contentList">
+                    <a [routerLink]="[contents.link]">{{contents.label}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Lobbies -->
+        <div class="col">
+            <ul class="nav flex-column">
+                <li class="nav-item">Lobbies
+                    <hr class="nav-line">
+                </li>
+                <li class="nav-item" *ngFor="let lobby of lobbiesList">
+                    <a [routerLink]="[lobby.link]">{{lobby.label}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Tools -->
+        <div class="col">
+            <ul class="nav flex-column">
+                <li class="nav-item">Tools
+                    <hr class="nav-line">
+                </li>
+                <li class="nav-item" *ngFor="let tool of toolsList">
+                    <a [routerLink]="[tool.link]">{{tool.label}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Resources -->
+        <div class="col">
+            <ul class="nav flex-column">
+                <li class="nav-item">Resources
+                    <hr class="nav-line">
+                </li>
+                <li class="nav-item" *ngFor="let resource of resourcesList">
+                    <a [routerLink]="[resource.link]">{{resource.label}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Socials -->
+        <div class="col">
+            <ul class="nav flex-column">
+                <li class="nav-item">Socials
+                    <hr class="nav-line">
+                </li>
+                <li class="nav-item mx-auto">
+                    <div class="justify-content-center">
+                        <a class="dark-btn" href="https://discord.gg/b6JJnChxrS" target="_blank">
+                            <img class="nav-item" src="assets/icons/discord-icon-white.png" />
+                        </a>
+                        <a class="dark-btn" href="https://www.twitch.tv/freefoodparty" target="_blank">
+                            <img class="nav-item" src="assets/icons/twitch-white-logo.png" />
+                        </a>
+                        <a class="dark-btn" href="https://www.youtube.com/@FreeFoodParty" target="_blank">
+                            <img class="nav-item" src="assets/icons/youtube-white-logo.png" />
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- Donate -->
+        <div class="col">
+            <ul class="nav flex-column">
+                <a href="javascript:void(0)" href="https://streamlabs.com/freefoodparty" target="_blank">
+                    <li class="nav-item">Donate
+                        <img class="money" src="../../assets/icons/money-icon.png" alt="..." />
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+</footer>

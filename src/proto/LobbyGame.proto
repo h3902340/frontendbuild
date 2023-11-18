@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package backend;
+option java_package = "com.aoe3leader.backend.proto";
+option java_outer_classname = "LobbyGame";
+
+import "google/protobuf/timestamp.proto";
+
+message LobbyGameList {
+    google.protobuf.Timestamp lastUpdateDate = 1;
+    repeated LobbyGameInfo lobbyGameInfoList = 2;
+}
+
+message LobbyGameInfo {    
+    int64 idGame = 1;
+    string gameName = 2;
+    int64 idHost = 3;
+    bool spectatorMode = 4;
+    int32 spectatorDelay = 5;
+    string region = 6;
+    string map = 7;
+    int32 maxPlayer = 8;
+    int32 gameSpeed = 9;
+    int32 startingAge = 10;
+    int32 endingAge = 11;
+    int32 startingResources = 12;
+    bool allowCheat = 13;
+    int32 treatyTime = 14;
+    bool koth = 15;
+    bool blockade = 16;
+    repeated LobbyGamePlayerInfo playerList = 17;
+}
+
+message LobbyGamePlayerInfo {
+    int64 idPlayer = 1;
+    string playerName = 2;
+    int32 playerElo = 3;
+    int32 idCiv = 4;
+    int32 team = 5;
+    int32 stationId = 6;
+    bool isReady = 7;
+    int32 status = 8;
+}

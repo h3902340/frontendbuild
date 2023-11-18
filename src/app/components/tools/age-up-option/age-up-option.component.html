@@ -1,0 +1,57 @@
+<div class="zone-color" [hidden]="hidden">
+    <p class="font-size-title golden-text one-column-section" style="text-align: center;">{{getSelectAgeTip()}}</p>
+    <div style="display: flex; justify-content: center;">
+        <div class="age-up-option" style="display: flex; flex-direction: column;" #option
+            *ngFor="let option of ageOptions; let i = index" (click)="onClickAgeUpOption(i)">
+            <p class="font-size-context golden-text one-column-section" style="text-align: center;">{{option.title}}</p>
+            <img class="zoom" style="width: 250px; height: auto; border: solid 2px gold;" [src]="option.thumbnail">
+            <div
+                style="border: solid 2px rgb(180, 153, 0); margin-top: 10px; padding: 5px; flex-grow: 1; display: flex; justify-content: flex-start; flex-direction: column;">
+                <div>
+                    <p class="font-size-context golden-text zero-margin-bottom one-column-section">
+                        {{goldenText}}</p>
+                    <div style="display: flex;">
+                        <div *ngIf="option.foodCost > 0">
+                            <p class="font-size-context white-text cost-text one-column-section"
+                                style="vertical-align: middle;">
+                                {{option.foodCost}}<img style="width: 30px; height: auto;" [src]="foodIcon">
+                            </p>
+                        </div>
+                        <div *ngIf="option.woodCost > 0">
+                            <p class="font-size-context white-text cost-text one-column-section"
+                                style="vertical-align: middle;">
+                                {{option.woodCost}}<img style="width: 30px; height: auto;" [src]="woodIcon">
+                            </p>
+                        </div>
+                        <div *ngIf="option.coinCost > 0">
+                            <p class="font-size-context white-text cost-text one-column-section"
+                                style="vertical-align: middle;">
+                                {{option.coinCost}}<img style="width: 30px; height: auto;" [src]="goldIcon">
+                            </p>
+                        </div>
+                        <div *ngIf="option.influenceCost > 0">
+                            <p class="font-size-context white-text cost-text one-column-section"
+                                style="vertical-align: middle;">
+                                {{option.influenceCost}}<img style="width: 30px; height: auto;" [src]="influenceIcon">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-size-context golden-text zero-margin-bottom one-column-section">
+                        {{goldenText2}}</p>
+                    <p class="font-size-context white-text cost-text">{{option.rolloverText}}</p>
+                </div>
+                <div style="margin-top: auto;">
+                    <p class="font-size-context golden-text zero-margin-bottom one-column-section">
+                        {{option.addedTechHeading}}
+                    </p>
+                    <div *ngFor="let card of option.addedcards"
+                        style="position: relative; display: inline-block; padding: 5px;">
+                        <app-deck-builder-card [card]="card" [cardHeight]="70" [hideTick]="true"></app-deck-builder-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

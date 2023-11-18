@@ -1,0 +1,28 @@
+.form-field {
+  width: 70%;
+  margin-top: 2rem;
+}
+
+.form-button {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.form-element {
+  text-align: center;
+  font-family: "Roboto Slab";
+  font-size: 1.2em;
+  font-variant: normal;
+}
+
+.mat-error {
+  margin-top: 5px;
+}
+
+.media-icon {
+  height: 2em;
+  width: 2em;
+  margin-right: 1em;
+  margin-left:1em;
+  margin-bottom: 0.7em;
+}

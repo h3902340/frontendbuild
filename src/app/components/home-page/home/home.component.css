@@ -1,0 +1,63 @@
+@import 'src/app/components/home-page/home-shared-styles.css';
+
+.full-page {
+    margin: auto;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.first-row {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.left-side {
+    display: flex;
+    flex: 40;
+    background-image: url('src\assets\images\home_update.png');
+    background-size: cover;
+    overflow: hidden;
+    background-position: top;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.update {
+    flex: 1;
+    overflow: hidden;
+}
+
+.right-side {
+    display: flex;
+    flex: 60;
+    flex-direction: column;
+    margin-left: 1%;
+}
+
+.events-banner {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background: url('src\assets\images\kavern_kombat_3_banner.png');
+    background-size: cover;
+    background-position: top center;
+    overflow: hidden;
+    margin-top: 1%;
+    width: 100% !important;
+    border-radius: 15px;
+}
+
+.home-events {
+    display: flex;
+    flex: 1;
+    height: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+    .full-page {
+        width: 98%;
+    }
+}

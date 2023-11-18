@@ -1,0 +1,52 @@
+.my-grid-tile {
+  padding-left: 10px !important;
+  padding-top: 10px !important;
+}
+
+/* .table {
+  --bs-table-striped-bg: #36342ca4 !important;
+} */
+
+table tr td,
+table tr th {
+  background-color: transparent !important;
+  text-align: center !important;
+}
+
+.light-th {
+  font-weight: bold !important;
+  color: rgb(110, 110, 110) !important;
+  text-shadow: #000000 1px 1px 1px;
+  font-variant: normal;
+  margin-right: 0.5em;
+  font-family: "Open Sans", sans-serif;
+}
+
+.table td,
+.table th {
+  vertical-align: middle !important;
+  text-align: left;
+  font-weight: normal;
+  font-family: "Open Sans", sans-serif;
+  padding-left: 10px !important;
+  padding-right: 40px !important;
+}
+
+.noborder-table th,
+.noborder-table td {
+  border: 0px
+}
+
+.last-update-text {
+  color: aliceblue;
+  text-align: right;
+  padding-right: 2rem;
+  font-size: 20px;
+  line-height: 20px;
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}

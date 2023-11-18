@@ -1,0 +1,42 @@
+.rank-list-table-holder {
+  overflow: auto;
+  height: auto;
+}
+
+.table {
+  --bs-table-striped-bg: #36342ca4 !important;
+}
+
+.media-icon {
+  height: 1em;
+  width: 1em;
+  margin-right: 0.8em;
+}
+
+.table td,
+.table th {
+  vertical-align: middle !important;
+  text-align: left;
+  font-weight: normal;
+  font-family: "Open Sans", sans-serif;
+}
+
+.table-rank-column {
+  color: rgb(141, 141, 141) !important;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+.material-icons {
+  font-size: 14px;
+  font-weight: bold;
+  transition: transform 1s !important;
+  vertical-align: -1px;
+}
+
+th {
+  cursor: pointer;
+}

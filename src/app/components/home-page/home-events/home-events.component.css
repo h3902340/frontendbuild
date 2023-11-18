@@ -1,0 +1,105 @@
+@import 'src/app/components/home-page/home-shared-styles.css';
+
+.parent {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 4%;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: flex-end;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, #000 100%) padding-box, linear-gradient(to top, var(--yellow-brand), transparent 10%) border-box;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    overflow: hidden;
+}
+
+.parent-flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bracket {
+    display: flex;
+    align-items: center;
+}
+
+.youtube {
+    display: flex;
+    align-items: center;
+}
+
+.text-div1 {
+    display: flex;
+    color: var(--yellow-brand);
+    font-family: 'Kanit Bold';
+    font-weight: 700;
+    font-size: clamp(0.7rem, 2vw, 2.2rem);
+    line-height: normal;
+    text-shadow: 2px 2px #000000;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.text-div2 {
+    display: flex;
+    color: white;
+    font-family: 'Source Sans 3';
+    font-weight: 700;
+    line-height: normal;
+    font-size: clamp(0.7rem, 2vw, 1.5rem);
+    text-shadow: 2px 2px #000000;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.text-div3 {
+    display: flex;
+    color: white;
+    font-family: 'Source Sans 3';
+    font-size: clamp(0.7rem,  2vw, 1.25rem);
+    text-shadow: 2px 2px #000000;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.text-div4 {
+    display: flex;
+    color: var(--yellow-brand);
+    font-family: 'Kanit Bold';
+    font-weight: 700;
+    font-size: clamp(0.7rem, 2vw, 1.2rem);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: flex-end;
+}
+
+.text-div5 {
+    display: flex;
+    color: var(--yellow-brand);
+    font-family: 'Kanit Bold';
+    font-weight: 700;
+    font-size: clamp(0.7rem, 2vw, 1.2rem);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.icon {
+    max-height: clamp(1.2rem, 3vw, 2rem);
+    max-width: clamp(1.2rem, 3vw, 2rem);
+    width: auto;
+    height: auto;
+    color: var(--yellow-brand);
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 700px) {
+    .text-div3 {
+        white-space: wrap;
+    }
+}

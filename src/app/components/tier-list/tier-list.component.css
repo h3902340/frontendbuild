@@ -1,0 +1,40 @@
+.zone-color {
+    background-color: rgb(52, 52, 52);
+}
+
+.tier-text {
+    font-size: 45px;
+    text-align: center;
+    position: relative;
+    top: 0px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0px;
+}
+
+.s-tier-zone-color {
+    background-color: rgb(147, 7, 7);
+}
+
+.a-tier-zone-color {
+    background-color: rgb(147, 84, 7);
+}
+
+.b-tier-zone-color {
+    background-color: rgb(49, 147, 7);
+}
+
+.c-tier-zone-color {
+    background-color: rgb(7, 147, 105);
+}
+
+.d-tier-zone-color {
+    background-color: rgb(7, 49, 147);
+}
+
+.e-tier-zone-color {
+    background-color: rgb(44, 7, 147);
+}
+
+.f-tier-zone-color {
+    background-color: rgb(147, 7, 133);
+}

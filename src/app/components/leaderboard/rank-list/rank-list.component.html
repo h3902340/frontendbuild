@@ -1,0 +1,172 @@
+<div class="table-responsive rank-list-table-holder">
+    <!-- Table Rank -->
+    <table class="table table-dark table-striped table-hover noborder-table">
+        <thead>
+            <tr style="font-size: 1.23em;">
+                <th class="light-th-right" scope="col" (click)="sortData('rank')">
+                    Rank
+                    <span *ngIf="sortField=='rank' && sortOrder=='asc'">
+                        <i class="material-icons">arrow_upward</i>
+                    </span>
+                    <span *ngIf="sortField=='rank' && sortOrder=='desc'">
+                        <i class="material-icons" style="transform: rotate(180deg);">arrow_upward</i>
+                    </span>
+                    <i class="material-icons" style="visibility: hidden;" *ngIf="sortField!='rank'">arrow_upward</i>
+                </th>
+                <th class="light-th-center" scope="col" (click)="sortData('rating')">
+                    Rating
+                    <span *ngIf="sortField=='rating' && sortOrder=='asc'">
+                        <i class="material-icons">arrow_upward</i>
+                    </span>
+                    <span *ngIf="sortField=='rating' && sortOrder=='desc'">
+                        <i class="material-icons" style="transform: rotate(180deg);">arrow_upward</i>
+                    </span>
+                    <i class="material-icons" style="visibility: hidden;" *ngIf="sortField!='rating'">arrow_upward</i>
+                </th>
+                <th class="light-th-left" scope="col" (click)="sortData('name')">
+                    Player Name
+                    <span *ngIf="sortField=='name' && sortOrder=='asc'">
+                        <i class="material-icons">arrow_upward</i>
+                    </span>
+                    <span *ngIf="sortField=='name' && sortOrder=='desc'">
+                        <i class="material-icons" style="transform: rotate(180deg);">arrow_upward</i>
+                    </span>
+                    <i class="material-icons" style="visibility: hidden;" *ngIf="sortField!='name'">arrow_upward</i>
+                </th>
+                <th class="light-th-left" scope="col" (click)="sortData('streak')">
+                    Streak
+                    <span *ngIf="sortField=='streak' && sortOrder=='asc'">
+                        <i class="material-icons">arrow_upward</i>
+                    </span>
+                    <span *ngIf="sortField=='streak' && sortOrder=='desc'">
+                        <i class="material-icons" style="transform: rotate(180deg);">arrow_upward</i>
+                    </span>
+                    <i class="material-icons" style="visibility: hidden;" *ngIf="sortField!='streak'">arrow_upward</i>
+                </th>
+                <th class="light-th-center" scope="col" (click)="sortData('winrate')">
+                    Win Rate
+                    <span *ngIf="sortField=='winrate' && sortOrder=='asc'">
+                        <i class="material-icons">arrow_upward</i>
+                    </span>
+                    <span *ngIf="sortField=='winrate' && sortOrder=='desc'">
+                        <i class="material-icons" style="transform: rotate(180deg);">arrow_upward</i>
+                    </span>
+                    <i class="material-icons" style="visibility: hidden;" *ngIf="sortField!='winrate'">arrow_upward</i>
+                </th>
+                <th class="light-th-right" scope="col" (click)="sortData('games')">
+                    Games
+                    <span *ngIf="sortField=='games' && sortOrder=='asc'">
+                        <i class="material-icons">arrow_upward</i>
+                    </span>
+                    <span *ngIf="sortField=='games' && sortOrder=='desc'">
+                        <i class="material-icons" style="transform: rotate(180deg);">arrow_upward</i>
+                    </span>
+                    <i class="material-icons" style="visibility: hidden;" *ngIf="sortField!='games'">arrow_upward</i>
+                </th>
+                <th class="light-th-right" scope="col" (click)="sortData('lastPlayed')">
+                    Last Played
+                    <span *ngIf="sortField=='lastPlayed' && sortOrder=='asc'">
+                        <i class="material-icons">arrow_upward</i>
+                    </span>
+                    <span *ngIf="sortField=='lastPlayed' && sortOrder=='desc'">
+                        <i class="material-icons" style="transform: rotate(180deg);">arrow_upward</i>
+                    </span>
+                    <i class="material-icons" style="visibility: hidden;"
+                        *ngIf="sortField!='lastPlayed'">arrow_upward</i>
+                </th>
+                <th class="light-th-center" scope="col" (click)="sortData('social')">
+                    Social
+                    <span *ngIf="sortField=='social' && sortOrder=='asc'">
+                        <i class="material-icons">arrow_upward</i>
+                    </span>
+                    <span *ngIf="sortField=='social' && sortOrder=='desc'">
+                        <i class="material-icons" style="transform: rotate(180deg);">arrow_upward</i>
+                    </span>
+                    <i class="material-icons" style="visibility: hidden;" *ngIf="sortField!='social'">arrow_upward</i>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let player of players">
+                <tr>
+                    <!-- Rank -->
+                    <td class="table-rank-column" style="text-align: right;" scope="row">
+                        {{player.playerElo[0].rankActive}}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <!-- Rating -->
+                    <td style="text-align: center;">{{player.playerElo[0].rating}}&nbsp;&nbsp;</td>
+                    <!-- Player Name -->
+                    <td style="width: 400px;" class="hover-player">
+                        <a [routerLink]="['/profile']" [queryParams]="{idPlayer: player.idPlayer}"
+                            style="color: aliceblue;">
+                            {{player.name}}&nbsp;&nbsp;&nbsp;<sup>{{player.clan}}</sup>
+                        </a>
+                    </td>
+                    <!-- Streak -->
+                    <td style="font-weight: bold; width: 100px;">
+                        <div class="up-trend" *ngIf="player.playerElo[0].streak > 0; else elseBlock"><span
+                                class="icon"><ng-icon
+                                    name="heroArrowUpRight"></ng-icon></span>{{player.playerElo[0].streak}}&nbsp;</div>
+                        <ng-template #elseBlock>
+                            <div class="down-trend">
+                                <span class="icon"><ng-icon
+                                        name="heroArrowDownRight"></ng-icon></span>{{-player.playerElo[0].streak}}&nbsp;
+                            </div>
+                        </ng-template>
+                    </td>
+                    <!-- Win Rate -->
+                    <td style="text-align: center">{{getWinRatio(player.playerElo[0].wins, player.playerElo[0].losses + player.playerElo[0].disconnections) |
+                        number:'1.0-0'}}%&nbsp;&nbsp;</td>
+                    <!-- Games -->
+                    <td style="text-align: right">{{player.playerElo[0].wins +
+                        player.playerElo[0].losses + player.playerElo[0].disconnections}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <!-- Last Played -->
+                    <td style="text-align: right; width: 150px;">{{player.playerElo[0].lastMatchDate |
+                        timeAgo}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <!-- Social -->
+                    <td style="text-align: center">
+                        <a *ngIf="player.twitchURL" href="https://{{player.twitchURL}}" target="_blank">
+                            <img class="media-icon" src="assets/icons/twitch-white-logo.png">
+                        </a>
+                        <a *ngIf="player.youtubeURL" href="https://{{player.youtubeURL}}" target="_blank">
+                            <img class="media-icon" src="assets/icons/youtube-white-logo.png">
+                        </a>
+                        <a *ngIf="player.liquipediaURL" href="https://{{player.liquipediaURL}}" target="_blank">
+                            <img class="media-icon" src="assets/icons/liquipedia-icon-white.png">
+                        </a>
+                        <a *ngIf="player.liquipediaURL" href="https://{{player.discordURL}}" target="_blank">
+                            <img class="media-icon" src="assets/icons/discord-icon-white.png">
+                        </a>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+<div class="navigation-panel-wrapper">
+    <div class="control-panel">
+        <ul>
+            <li>
+                <button type="button" class="ctrl-btn" (click)="firstPage()"><i
+                        class="fa-solid fa-backward-step"></i></button>
+            </li>
+            <li>
+                <button type="button" class="ctrl-btn reverse" (click)="previousPage()"><i
+                        class="fa-solid fa-play "></i></button>
+            </li>
+            <li><input type="number" min="1" oninput="validity.valid||(value='');" [(ngModel)]="pagePlusOne"
+                    class="ctrl-input" (keyup.enter)="goToPage()"></li>
+            <li>
+                <button type="button" class="ctrl-btn" (click)="nextPage()"><i class="fa-solid fa-play"></i></button>
+            </li>
+            <li>
+                <button type="button" class="ctrl-btn" (click)="lastPage()"><i
+                        class="fa-solid fa-forward-step"></i></button>
+            </li>
+        </ul>
+    </div>
+    <div class="number-pages">
+        {{showPage}} of {{showPageMax}} pages
+    </div>
+</div>

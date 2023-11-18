@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package backend;
+option java_package = "com.aoe3leader.backend.proto";
+option java_outer_classname = "Observable";
+
+import "google/protobuf/timestamp.proto";
+
+message ObservableList {
+    google.protobuf.Timestamp lastUpdateDate = 1;
+    repeated ObservableMatchInfo observableList = 2;
+}
+
+message ObservableMatchInfo {    
+    int64 idGame = 1;
+    int32 idGroup = 2;
+    string gameName = 3;
+    int64 idHost = 4;
+    int32 playerCount = 5;
+    google.protobuf.Timestamp startDate = 6;
+    string region = 7;
+    int32 gameMode = 8;
+    repeated ObservableMatchPlayerInfo playerInfoList = 9;
+}
+
+message ObservableMatchPlayerInfo {
+    int64 idPlayer = 1;
+    string playerName = 2;
+    int32 playerElo = 3;
+    int32 idCiv = 4;
+    int32 team = 5;
+    int32 status = 6;
+}

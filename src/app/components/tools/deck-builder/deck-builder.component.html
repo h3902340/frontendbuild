@@ -1,0 +1,269 @@
+<div class="container" style="position: relative;">
+    <div style="display: flex; align-items: flex-start;">
+        <h2 class="main-heading" style="white-space: nowrap;">{{deckBuilderTitle}}</h2>
+        <form style="margin-left: auto;">
+            <mat-form-field>
+                <mat-label>{{deckNamePlaceholder}}</mat-label>
+                <input matInput (change)="onDeckNameChanged($event)" [value]="deckName">
+            </mat-form-field>
+        </form>
+    </div>
+    <div style="display: flex; justify-content:flex-end;">
+        <button mat-raised-button class="validation-button form-button m-2"
+            style="width: 150px; align-self: flex-end; position: relative; z-index: 0;" (click)="reset()">
+            <mat-icon>refresh</mat-icon><span style="white-space: nowrap;">{{resetText}}</span>
+        </button>
+        <button mat-raised-button class="validation-button form-button m-2"
+            style="width: 150px; align-self: flex-end; position: relative; z-index: 0;" (click)="downloadScreenshot()">
+            <mat-icon>download</mat-icon><span style="white-space: nowrap;">{{screenshotText}}</span>
+        </button>
+        <button mat-raised-button matTooltip="Copied to clipboard!" #tooltip="matTooltip"
+            (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="tooltip.hide();" (click)="tooltip.show()"
+            (mouseup)="copySharedLink()" [cdkCopyToClipboard]="sharedLink" class="validation-button form-button m-2"
+            style="width: 150px; align-self: flex-end; position: relative; z-index: 0;">
+            <mat-icon>link</mat-icon><span style="white-space: nowrap;">{{copSharedLinkText}}</span>
+        </button>
+        <button mat-raised-button class="validation-button form-button m-2"
+            style="width: 150px; align-self: flex-end; position: relative; z-index: 0; white-space: nowrap;"
+            (click)="randomDeck()">
+            <ng-icon style="margin-right: 5px;" name="bootstrapDice5"></ng-icon><span
+                style="white-space: nowrap;">{{randomText}}</span>
+        </button>
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px;">
+            <label class="one-column-section">{{languageText}}</label>
+            <select class="form-select" id="game-mode" [(ngModel)]="selectedLanguage" (change)="onSelectLanguage()">
+                <option *ngFor="let language of languages; let i = index;" [value]="language" selected>
+                    {{languageNames[i]}}
+                </option>
+            </select>
+        </div>
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px;">
+            <label class="one-column-section">{{civText}}</label>
+            <select class="form-select" id="game-mode" [(ngModel)]="selectedCivId" (change)="onSelectCiv()">
+                <option *ngFor="let civ of civs; let i = index;" [value]="civ" selected>
+                    {{civNames[i]}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div id="deck">
+        <div style="background-color: rgb(43, 43, 43); display: flex; align-items: flex-start;">
+            <img style="width: 260px;" [src]="getPostgameFlagSrc()">
+            <p class="deck-size-text one-column-section">{{deckName}}</p>
+            <p class="deck-size-text one-column-section">
+                {{sizeText}}:{{selectedCardCount}}/{{maxCardCount}}</p>
+        </div>
+        <div style="display: flex;" [hidden]="!hasFederalCards">
+            <div class="ageup-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img src="assets/Data/wpfg/resources/images/mods/star_icon_filled.png"
+                    style="width: 50px; height: auto;">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of ageUpCardArray;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight" [hideTick]="true"
+                        (onCardClickedEvent)="onClickAgeUpCard($event.card)"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="age1-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img [src]="age1Src">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of age1CardArray;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight" [hideTick]="true"
+                        (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="age2-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img [src]="age2Src">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of age2CardArray;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight" [hideTick]="true"
+                        (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="age3-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img [src]="age3Src">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of age3CardArray;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight" [hideTick]="true"
+                        (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="age4-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img [src]="age4Src">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of age4CardArray;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight" [hideTick]="true"
+                        (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; align-items: flex-start; margin-top: 10px; margin-left: 10px;">
+        <input style="align-self: center; margin-bottom: 10px;" type="radio" id="by-age" name="filter"
+            (change)="onSelectFilter(0)" [checked]="radioType == 0">
+        <label class="one-column-section" for="by-age"
+            style="color: aliceblue; margin-left: 10px; margin-right: 20px; font-size: 20px; align-self: center; margin-bottom: 10px;">{{byAgeText}}</label>
+        <input style="align-self: center; margin-bottom: 10px;" type="radio" id="by-card-types" name="filter"
+            (change)="onSelectFilter(1)" [checked]="radioType == 1">
+        <label class="one-column-section" for="by-card-types"
+            style="color: aliceblue; margin-left: 10px; margin-right: 20px; font-size: 20px; align-self: center; margin-bottom: 10px;">{{byTypeText}}</label>
+        <input style="align-self: center; margin-bottom: 10px;" *ngIf="hasFederalCards" type="radio" id="age-up"
+            name="filter" (change)="onSelectFilter(2)" [checked]="radioType == 2">
+        <label *ngIf="hasFederalCards" class="one-column-section" for="age-up"
+            style="color: aliceblue; margin-left: 10px; margin-right: 20px; font-size: 20px; align-self: center; margin-bottom: 10px;">{{ageUpRadioLabel}}</label>
+        <app-searchbar class="search-wrapper" style="line-height: 1em; margin-left: auto; align-self: flex-end;"
+            (searchChanged)="onSearchChanged($event)" (onClicked)="onSelectFilter(3)"
+            [placeHolder]="searchBarPlaceholder" [value]="search"></app-searchbar>
+    </div>
+    <div [hidden]="radioType != 0">
+        <div class="tab">
+            <button class="tablinks one-column-section" (click)="selectAgeTab($event, 'I')">
+                <img class="age-img-in-tab" [src]="age1Src">{{age1Text}}
+            </button>
+            <button class="tablinks one-column-section" (click)="selectAgeTab($event, 'II')">
+                <img class="age-img-in-tab" [src]="age2Src">{{age2Text}}
+            </button>
+            <button class="tablinks one-column-section" (click)="selectAgeTab($event, 'III')">
+                <img class="age-img-in-tab" [src]="age3Src">{{age3Text}}
+            </button>
+            <button class="tablinks one-column-section" (click)="selectAgeTab($event, 'IV')">
+                <img class="age-img-in-tab" [src]="age4Src">{{age4Text}}
+            </button>
+        </div>
+
+        <div id="I" name="tabcontent" class="tabcontent zone-color">
+            <div class="card-grid" *ngFor="let card of age1Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+
+        <div id="II" name="tabcontent" class="tabcontent zone-color">
+            <div class="card-grid" *ngFor="let card of age2Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+
+        <div id="III" name="tabcontent" class="tabcontent zone-color">
+            <div class="card-grid" *ngFor="let card of age3Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+        <div id="IV" name="tabcontent" class="tabcontent zone-color">
+            <div class="card-grid" *ngFor="let card of age4Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+    </div>
+    <div [hidden]="radioType != 1">
+        <div class="tab">
+            <button class="tablinks2 one-column-section" (click)="selectBuidlingTab($event, 'build1')">
+                {{build1Name}}
+            </button>
+            <button class="tablinks2 one-column-section" (click)="selectBuidlingTab($event, 'build2')">
+                {{build2Name}}
+            </button>
+            <button class="tablinks2 one-column-section" (click)="selectBuidlingTab($event, 'build3')">
+                {{build3Name}}
+            </button>
+            <button class="tablinks2 one-column-section" (click)="selectBuidlingTab($event, 'build4')">
+                {{build4Name}}
+            </button>
+            <button class="tablinks2 one-column-section" (click)="selectBuidlingTab($event, 'build5')">
+                {{build5Name}}
+            </button>
+        </div>
+        <div id="build1" name="tabcontent2" class="tabcontent2 zone-color">
+            <div class="card-grid" *ngFor="let card of build1Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+
+        <div id="build2" name="tabcontent2" class="tabcontent2 zone-color">
+            <div class="card-grid" *ngFor="let card of build2Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+
+        <div id="build3" name="tabcontent2" class="tabcontent2 zone-color">
+            <div class="card-grid" *ngFor="let card of build3Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+        <div id="build4" name="tabcontent2" class="tabcontent2 zone-color">
+            <div class="card-grid" *ngFor="let card of build4Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+        <div id="build5" name="tabcontent2" class="tabcontent2 zone-color">
+            <div class="card-grid" *ngFor="let card of build5Pool;">
+                <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                    (onCardClickedEvent)="onClickCard($event.card)"></app-deck-builder-card>
+            </div>
+        </div>
+    </div>
+    <div [hidden]="radioType != 2">
+        <div class="tab">
+            <button class="tablinks3 one-column-section" (click)="selectAgeUpTab($event)">
+                <img class="age-img-in-tab" [src]="age2Src">{{age2Text}}
+            </button>
+            <button class="tablinks3 one-column-section" (click)="selectAgeUpTab($event)">
+                <img class="age-img-in-tab" [src]="age3Src">{{age3Text}}
+            </button>
+            <button class="tablinks3 one-column-section" (click)="selectAgeUpTab($event)">
+                <img class="age-img-in-tab" [src]="age4Src">{{age4Text}}
+            </button>
+            <button class="tablinks3 one-column-section" (click)="selectAgeUpTab($event)">
+                <img class="age-img-in-tab" [src]="age5Src">{{age5Text}}
+            </button>
+        </div>
+        <app-age-up-option name="tabcontent3" class="tabcontent3" #ageUpOption2 *ngIf="hideSpinner"
+            [idCiv]="selectedCivId" [age]="2" [selectLanguage]="selectedLanguage"
+            (onOptionClickedEvent)="onClickAgeUpOption()"></app-age-up-option>
+        <app-age-up-option name="tabcontent3" class="tabcontent3" #ageUpOption3 *ngIf="hideSpinner"
+            [idCiv]="selectedCivId" [age]="3" [selectLanguage]="selectedLanguage"
+            (onOptionClickedEvent)="onClickAgeUpOption()"></app-age-up-option>
+        <app-age-up-option name="tabcontent3" class="tabcontent3" #ageUpOption4 *ngIf="hideSpinner"
+            [idCiv]="selectedCivId" [age]="4" [selectLanguage]="selectedLanguage"
+            (onOptionClickedEvent)="onClickAgeUpOption()"></app-age-up-option>
+        <app-age-up-option name="tabcontent3" class="tabcontent3" #ageUpOption5 *ngIf="hideSpinner"
+            [idCiv]="selectedCivId" [age]="5" [selectLanguage]="selectedLanguage"
+            (onOptionClickedEvent)="onClickAgeUpOption()"></app-age-up-option>
+    </div>
+    <div [hidden]="radioType != 3">
+        <app-deck-builder-search [search]="search" [cardPool]="allCardPool"
+            (onCardClickedEvent)="onClickCard($event)"></app-deck-builder-search>
+    </div>
+    <div class="spinner" [hidden]="hideSpinner">
+        <mat-progress-spinner [value]="progress"></mat-progress-spinner>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div *ngIf="isEditing" class="editor-container">
+  <quill-editor [(ngModel)]="rawContent" theme="snow" [modules]="modules"></quill-editor>
+  <div style="display:flex; justify-content: center; ">
+    <button mat-raised-button class="icon-add" mat-button (click)="saveChanges()">
+      <mat-icon class="custom-icon-button ">done</mat-icon> Save
+    </button>
+  </div>
+</div>
+
+<div *ngIf="!isEditing" class="editor-container ql-snow" style="border-width: 0;">
+  <div class="ql-editor" [innerHTML]="safeContent">
+
+  </div>
+  <div style="display:flex; justify-content: center; ">
+    <button mat-raised-button class="icon-add" *ngIf="editMode" (click)="startEditing()">
+      <mat-icon class="custom-icon-button ">edit</mat-icon> Edit
+    </button>
+  </div>
+</div>

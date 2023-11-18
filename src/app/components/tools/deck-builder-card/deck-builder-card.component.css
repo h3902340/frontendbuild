@@ -1,0 +1,65 @@
+.card-amount-background {
+    position: absolute;
+    margin-left: 6px;
+    margin-top: -22px;
+    padding-right: 2px;
+    height: 17px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card-amount-text {
+    color: aliceblue;
+    margin-top: -2px;
+}
+
+.card-infinite-background {
+    position: absolute;
+    margin-left: 6px;
+    margin-top: -66px;
+    padding-right: 2px;
+    height: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card-infinite-text {
+    color: aliceblue;
+    margin-top: -8px;
+    font-size: 18px;
+}
+
+.card-double-text {
+    color: aliceblue;
+    margin-top: -5px;
+    font-size: 16px;
+}
+
+.card-res-list {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    margin-left: 42px;
+    width: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 0px;
+}
+
+.card-res-icon {
+    max-height: 24px;
+    margin-bottom: -6px;
+}
+
+.tick-icon {
+    position: absolute;
+    max-height: 30px;
+    margin-top: 0px;
+    margin-left: -30px;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+}

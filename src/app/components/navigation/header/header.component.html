@@ -1,0 +1,178 @@
+<!-- desktop header start -->
+<header class="desktop-header" *ngIf="isBrowser">
+    <div class="top-row">
+        <div class="top-left">
+            <div *ngIf="!(isLoggedIn$ | async)">
+                <div (click)="login()">
+                    <a href="#" class="steambutton">
+                        <span>Login With Steam</span>
+                        <div class="icon">
+                            <i class="fa fa-steam-square"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div *ngIf="(isLoggedIn$ | async)">
+                <div class="steam-logged-btn" [routerLink]="['/userprofile']" *ngIf="playerSummary">
+                    <img class="steam-avatar" src={{playerSummary.avatarfull}}>
+                    <span class="profile-text">{{this.playerSummary.personaname}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="top-right">
+            <h2 class="brand-title"></h2>
+            <a class="live-container" href="https://www.twitch.tv/freefoodparty" target="_blank">
+                <img [ngClass]="{'live': ffpIsLive, 'offline': !ffpIsLive}" src="assets/icons/live.png" />
+            </a>
+            <a class="dark-btn" href="https://discord.gg/b6JJnChxrS" target="_blank">
+                <img src="assets/icons/discord-icon-white.png" />
+                <span>Join the Community!</span>
+            </a>
+            <a class="dark-btn" href="https://www.twitch.tv/freefoodparty" target="_blank">
+                <img src="assets/icons/twitch-white-logo.png" />
+                <span>Follow us!</span>
+            </a>
+            <a class="dark-btn" href="https://www.youtube.com/@FreeFoodParty" target="_blank">
+                <img src="assets/icons/youtube-white-logo.png" />
+                <span>Subscribe!</span>
+            </a>
+        </div>
+    </div>
+    <div class="bottom-row">
+        <div class="bottom-left">
+            <img class="aoe_logo" src="assets/aoe3logo2.png" />
+        </div>
+        <div class="bottom-right">
+            <nav class="desktop-navbar">
+                <div class="navbar-left">
+                    <a class="navbar-brand" [routerLink]="[homeLink]">
+                        <img src="../../assets/header-logo.png" alt="..." />
+                    </a>
+                    <div class="navigation-bar" *ngFor="let menu of menuList">
+                        <div *ngIf="!menu.submenu; else elseBlock">
+                            <a class="menu-tab" [routerLink]="[menu.link]" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+                                {{ menu.label }}</a>
+                        </div>
+                        <ng-template #elseBlock>
+                            <!-- Submenu (if available) -->
+                            <div class="dropdown" *ngIf="menu.submenu && menu.submenu.length > 0">
+                                <button class="menu-tab">{{ menu.label }}</button>
+                                <div class="dropdown-content">
+                                    <!-- Loop through submenu items -->
+                                    <a class="link menu-option" *ngFor="let submenu of menu.submenu"
+                                        [routerLink]="[submenu.link]" routerLinkActive="active-link">{{
+                                        submenu.label }}</a>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="navbar-right">
+                    <ul class="navbar">
+                        <li class="nav-items">
+                            <a class="link" href="javascript:void(0)" href="https://streamlabs.com/freefoodparty"
+                                target="_blank">
+                                <img src="../../assets/icons/money-icon.png" alt="..." />
+                                <span class="menu-tab">Donate</span>
+                            </a>
+                        </li>
+                        <li class="nav-items" hidden="true">
+                            <a class="link" href="javascript:void(0)">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- desktop header end -->
+
+<!-- mobile header start -->
+<header class="mobile-header" *ngIf="isBrowser">
+    <div class="mobile-top">
+        <a class="mobile-logo" href="index.html">
+            <img src="../../assets/footer-logo.png" alt="..." />
+        </a>
+        <div class="mobile-middle">
+            <h2 class="brand-title"></h2>
+            <a class="live-container" href="https://www.twitch.tv/freefoodparty" target="_blank">
+                <img [ngClass]="{'mobile-live': ffpIsLive, 'mobile-offline': !ffpIsLive}" src="assets/icons/live.png" />
+            </a>
+        </div>
+        <button class="menu-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample">
+            <img src="../../assets/icons/food_crate.png" alt="..." />
+        </button>
+    </div>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <a class="navbar-brand" href="javascript:void(0)" [routerLink]="[homeLink]" data-bs-dismiss="offcanvas">
+                <img src="../../assets/footer-logo.png" alt="..." />
+            </a>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <nav class="mobile-navbar">
+                <div class="navigation-bar" *ngFor="let menu of menuList">
+                    <div *ngIf="!menu.submenu; else elseBlock">
+                        <button class="menu-tab" [routerLink]="[menu.link]" data-bs-dismiss="offcanvas"
+                            routerLinkActive="active-link">{{ menu.label }}</button>
+                    </div>
+                    <ng-template #elseBlock>
+                        <!-- Submenu (if available) -->
+                        <div class="dropdown" *ngIf="menu.submenu && menu.submenu.length > 0">
+                            <button class="menu-tab">{{ menu.label }}</button>
+                            <div class="dropdown-content">
+                                <!-- Loop through submenu items -->
+                                <a class="link menu-option" *ngFor="let submenu of menu.submenu"
+                                    data-bs-dismiss="offcanvas" [routerLink]="[submenu.link]"
+                                    routerLinkActive="active-link">{{
+                                    submenu.label }}</a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </nav>
+            <div class="mobile-socials" data-bs-dismiss="offcanvas">
+                <a class="dark-btn" href="https://discord.gg/b6JJnChxrS" target="_blank">
+                    <img src="assets/icons/discord-icon-white.png" />
+                    <span>Join the Community!</span>
+                </a>
+                <a class="dark-btn" href="https://www.twitch.tv/freefoodparty" target="_blank">
+                    <img src="assets/icons/twitch-white-logo.png" />
+                    <span>Follow us!</span>
+                </a>
+                <a class="dark-btn" href="https://www.youtube.com/@FreeFoodParty" target="_blank">
+                    <img src="assets/icons/youtube-white-logo.png" />
+                    <span>Subscribe!</span>
+                </a>
+            </div>
+            <div class="mobile-extra">
+                <a href="javascript:void(0)" href="https://streamlabs.com/freefoodparty" target="_blank">
+                    <img src="../../assets/icons/money-icon.png" alt="..." />
+                    <span class="menu-tab">Donate</span>
+                </a>
+            </div>
+            <div class="mobile-login" data-bs-dismiss="offcanvas">
+                <div *ngIf="!(isLoggedIn$ | async)">
+                    <div (click)="login()">
+                        <a class="steambutton" href="#"><span>Login With Steam</span>
+                            <div class="icon">
+                                <i class="fa fa-steam-square"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div *ngIf="(isLoggedIn$ | async)">
+                    <div class="steam-logged-btn" [routerLink]="['/userprofile']" *ngIf="playerSummary">
+                        <div class="avatar-container">
+                            <img class="steam-avatar" src={{playerSummary.avatarfull}}>
+                        </div>
+                        <span class="profile-avatar">{{this.playerSummary.personaname}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- mobile header end -->

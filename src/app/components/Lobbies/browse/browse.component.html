@@ -1,0 +1,182 @@
+<section class="one-column-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="game-count" class="game-count">
+                    <p>Last Update: {{lastUpdateDateString}}&nbsp;&nbsp;&nbsp;&nbsp;Game Count:
+                        {{displayedLobbyGameArray.length}}</p>
+                </div>
+                <div class="row align-items-end">
+                    <div class="col-lg-2">
+                        <h2 class="main-heading" style="white-space: nowrap;">Browse</h2>
+                    </div>
+                    <div class="col-lg-5">
+                        <div style="margin-left: 100px;">
+                            <mat-slider class="width-98pc" discrete showTickMarks step="100" min="0" max="2500">
+                                <input value="0" matSliderStartThumb [(ngModel)]="eloLowerBound">
+                                <input value="2500" matSliderEndThumb [(ngModel)]="eloUpperBound">
+                            </mat-slider>
+                        </div>
+                    </div>
+                    <div class="col-lg-2" style="text-align: right; height: 44px;">
+                        <mat-slide-toggle [(ngModel)]="showOnlySpectatorMode">
+                            <p class="toggle-text">Ranked Lobby</p>
+                        </mat-slide-toggle>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="game-mode-select dark-bg-no-shadow">
+                            <label for="game-mode">Game Mode</label>
+                            <select class="form-select" id="game-mode" [(ngModel)]="selectedGameMode">
+                                <option value=0 selected>All</option>
+                                <option value=1>Solo</option>
+                                <option value=2>Team</option>
+                                <option value=3>Treaty</option>
+                                <option value=4>King of the Hill</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content dark-bg-no-shadow" id="myTabContent">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-striped noborder-table">
+                            <thead>
+                                <tr>
+                                    <th class="light-th-center" scope="col">Game Name</th>
+                                    <th class="light-th-center" scope="col">Map</th>
+                                    <th class="light-th-left" scope="col">Player(s)</th>
+                                    <th class="light-th-center" scope="col">Settings</th>
+                                    <th class="light-th-center" scope="col"></th>
+                                    <th class="light-th-center" scope="col">Region</th>
+                                    <th class="light-th-center" scope="col">Link</th>
+                                </tr>
+                            </thead>
+                            <tbody id="observable-table">
+                                <ng-container *ngFor="let game of displayedLobbyGameArrayPaginated;">
+                                    <tr>
+                                        <td style="text-align: center; width: 200px;" scope="row">
+                                            {{game.gameInfo.gameName}}</td>
+                                        <td style="text-align: center; width: 100px;" scope="row">{{game.gameInfo.map}}
+                                        </td>
+                                        <td style="text-align: left;">
+                                            <div *ngFor="let player of game.gameInfo.lobbyGamePlayer">
+                                                <div style="display: flex;" *ngIf="player.status != 1">
+                                                    <div *ngIf="player.status == 2; else elseBlock">
+                                                        <img class="flag" [src]="IdCivToCivUrl(player.idCiv!)">{{"AI"}}
+                                                        {{player.team == 0 ? "(Team ?)" : "(Team " + player.team + ")"}}
+                                                    </div>
+                                                    <ng-template #elseBlock>
+                                                        <div style="display: flex;"
+                                                            *ngIf="player.stationID == -1; else elseBlock2">
+                                                            <div
+                                                                style="border: dashed 1px white; width: 40px; height: 100%;">
+                                                            </div>
+                                                            <div class="empty-slot">
+                                                                {{"empty slot"}}
+                                                            </div>
+                                                        </div>
+                                                        <ng-template #elseBlock2>
+                                                            <a [routerLink]="['/profile']"
+                                                                [queryParams]="{idPlayer: player.idPlayer}"
+                                                                style="color: aliceblue;">
+                                                                <img class="flag"
+                                                                    [src]="IdCivToCivUrl(player.idCiv!)">{{player.name}}({{
+                                                                player.elo == -1 ? "Not
+                                                                Ranked" :player.elo}}) {{player.team == 0 ? "(Team
+                                                                ?)" : "(Team " + player.team + ")"}}
+                                                            </a>
+                                                        </ng-template>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!--Game Settings-->
+                                        <td style="text-align: left; width: 250px; margin-top: 20px;">
+                                            <div
+                                                *ngIf="game.gameInfo.gameSpeed == 1 && game.gameInfo.gameSpeed == 1 && game.gameInfo.startingAge == 0 && game.gameInfo.endingAge == 4 && game.gameInfo.startingResources == 0 && !game.gameInfo.allowCheat && !game.gameInfo.koth && !game.gameInfo.treatyTime!">
+                                                Standard rules</div>
+
+                                            <div *ngIf="game.gameInfo.gameSpeed != 1">Game Speed:
+                                                {{gameSpeedToName(game.gameInfo.gameSpeed!)}}</div>
+                                            <div *ngIf="game.gameInfo.startingAge != 0">Starting Age:
+                                                {{startingAgeToName(game.gameInfo.startingAge!)}}</div>
+                                            <div *ngIf="game.gameInfo.endingAge != 4">Ending Age:
+                                                {{endingAgeToName(game.gameInfo.endingAge!)}}</div>
+                                            <div *ngIf="game.gameInfo.startingResources != 0">Starting Resources:
+                                                {{startingResourcesToName(game.gameInfo.startingResources!)}}</div>
+                                            <div *ngIf="game.gameInfo.allowCheat">Allow Cheat:
+                                                {{game.gameInfo.allowCheat ? "Enabled" : "Disabled"}}</div>
+                                            <div *ngIf="game.gameInfo.koth">King of the Hill: {{game.gameInfo.koth ?
+                                                "Enabled" : "Disabled"}}</div>
+                                            <div *ngIf="game.gameInfo.treatyTime! > 0">Treaty Time:
+                                                {{game.gameInfo.treatyTime}} minutes</div>
+                                            <div *ngIf="game.gameInfo.treatyTime! > 0">Blockade:
+                                                {{game.gameInfo.blockade
+                                                ?
+                                                "Enabled" :
+                                                "Disabled"}}</div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="game.gameInfo.isPasswordProtected">
+                                                <mat-icon>lock</mat-icon>
+                                            </div>
+                                            <div *ngIf="game.gameInfo.spectatorMode">
+                                                <mat-icon>remove_red_eye</mat-icon>
+                                                <!-- {{game.gameInfo.spectatorDelay! / 60}} min-->
+                                            </div>
+
+                                            <!--<div  *ngIf="game.gameInfo."><mat-icon>lock_open</mat-icon></div>-->
+                                        </td>
+                                        <!--Region-->
+                                        <td style="text-align: center;">
+                                            {{game.gameInfo.region}}
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <ng-container>
+                                                <button mat-icon-button
+                                                    [cdkCopyToClipboard]="game.gameInfo.idGame.toString()"
+                                                    matTooltip="Copied to clipboard!" #tooltip="matTooltip"
+                                                    (mouseenter)="$event.stopImmediatePropagation()"
+                                                    (mouseleave)="tooltip.hide();" (click)="tooltip.show();">
+                                                    <mat-icon>content_copy</mat-icon>
+                                                </button>
+                                            </ng-container>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                        <!-- Pagination -->
+                        <div class="navigation-panel-wrapper">
+                            <div class="control-panel">
+                                <ul>
+                                    <li>
+                                        <button type="button" class="ctrl-btn" (click)="firstPage()"><i
+                                                class="fa-solid fa-backward-step"></i></button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="ctrl-btn reverse" (click)="previousPage()"><i
+                                                class="fa-solid fa-play "></i></button>
+                                    </li>
+                                    <li><input type="number" min="1" oninput="validity.valid||(value='');"
+                                            [(ngModel)]="pagePlusOne" class="ctrl-input" (keyup.enter)="goToPage()">
+                                    </li>
+                                    <li>
+                                        <button type="button" class="ctrl-btn" (click)="nextPage()"><i
+                                                class="fa-solid fa-play"></i></button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="ctrl-btn" (click)="lastPage()"><i
+                                                class="fa-solid fa-forward-step"></i></button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="number-pages">
+                                {{showPage}} of {{showPageMax}} pages
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

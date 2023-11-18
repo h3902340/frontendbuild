@@ -1,0 +1,19 @@
+#twitch-video {
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    height: calc(95.2vw * 9 / 16);
+}
+
+.parent {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+    #twitch-video {
+        height: calc(98.2vw * 9 / 16);
+    }
+}

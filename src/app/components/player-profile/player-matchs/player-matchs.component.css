@@ -1,0 +1,237 @@
+.table-match td,
+.table-match th {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    border: 0px;
+    background-color: transparent !important;
+    font-family: "Open Sans", sans-serif;
+    font-variant: normal;
+}
+
+.tablelight-th {
+    font-weight: bold !important;
+    color: rgb(110, 110, 110) !important;
+    text-shadow: #000000 1px 1px 1px;
+    font-variant: normal;
+    margin-right: 0.5em;
+    font-family: "Open Sans", sans-serif;
+}
+
+.table-fixed-column {
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.manual-border {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tr-spacer {
+    height: 5px;
+}
+
+.td-center-date {
+    transform: translateY(35%);
+}
+
+.td-center-duration {
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+
+.custom-space-left {
+    vertical-align: middle !important;
+    padding-left: 0;
+    padding-top: 1.5%;
+}
+
+.custom-space-right {
+    vertical-align: middle !important;
+    padding-right: 0;
+    padding-top: 1.5%;
+}
+
+.custom-space {
+    vertical-align: middle !important;
+    padding-inline: 0;
+    padding-top: 1.5%;
+    position: relative;
+}
+
+.duration {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.duration-text {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex: 1;
+}
+
+.expand-icon {
+    transform: scale(1.2);
+    transition-duration: 0.5s;
+    transition-property: transform;
+    margin-right: 2rem;
+}
+
+.expand-icon-rotate {
+    transform: scale(1.5) rotate(-180deg);
+    -webkit-transform: scale(1.5) rotate(-180deg);
+}
+
+.map-col {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 0;
+    text-align: center;
+}
+
+.game-mode-container {
+    padding: 5%;
+    background-color: black;
+}
+
+.game-mode {
+    position: absolute;
+    left: 0px;
+    top: 3px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 150;
+    text-align: center;
+    color: white;
+    font-family: 'Source Sans 3';
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-shadow: 1px 2px 2px rgb(0, 0, 0), 1px 2px 2px rgb(0, 0, 0), 2px 5px 5px rgb(0, 0, 0); /* Dark black shadow */
+}
+
+.map-col img.map {
+    z-index: 100;
+    border: 0px solid red;
+    width: auto !important;
+    height: 127px !important;
+    object-fit: scale-down;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+}
+
+.map-name {
+    /* vertical-align: middle; */
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .map-col img.map {
+        width: auto !important;
+        height: 127px !important
+    }
+}
+
+.map-col .left {
+    left: 0px;
+}
+
+.map-col .right {
+    right: 0px
+}
+
+.map-col .green {
+    background-color: rgba(46, 228, 30, .1);
+    width: 50%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    z-index: -1;
+}
+
+.map-col .red {
+    background-color: rgba(232, 51, 51, .1);
+    width: 50%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    z-index: -5;
+}
+
+.filter-row {
+    display: flex;
+}
+
+.search-match-history {
+    display: flex;
+    font-family: "Open Sans", sans-serif;
+    font-variant: normal;
+    align-items: flex-end;
+    flex: 1;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.last-update-text {
+    color: aliceblue;
+    text-align: right;
+    padding-right: 2rem;
+    font-size: 20px;
+    line-height: 20px;
+    margin-left: auto;
+    align-self: flex-end;
+}
+
+.detail-text-player {
+    border: solid 1px white;
+    color: aliceblue;
+    vertical-align: middle;
+    font-size: 18px;
+    width: 165px;
+}
+
+.detail-text {
+    border: solid 1px white;
+    color: aliceblue;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.table-detail td {
+    border: solid 1px white;
+    background-color: transparent !important;
+    font-family: "Open Sans", sans-serif;
+    font-variant: normal;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+}
+
+.badge-icons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail-div {
+    margin-left: 10px;
+    margin-right: 10px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.detail-column-header {
+    vertical-align: middle;
+}

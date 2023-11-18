@@ -1,0 +1,55 @@
+.parent-container {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    justify-content: space-between;
+}
+
+.elo-div {
+    display: flex;
+}
+
+.flag-min {
+    max-height: 1.7rem;
+    max-width: 1.7rem;
+    width: auto;
+    height: auto;
+}
+
+.score-text {
+    display: flex;
+    gap: 5%;
+    align-items: center;
+    font-family: "marko-one";
+    font-variant: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.player-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.green {
+    color: var(--green);
+}
+
+.red {
+    color: var(--red);
+}
+
+.green:hover {
+    color: var(--green);
+}
+
+.red:hover {
+    color: var(--red);
+}

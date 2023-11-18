@@ -1,0 +1,24 @@
+<div (mouseenter)="onHoverCard($event)" (mouseleave)="onLeaveCard($event)" (click)="onClickCard(card)">
+    <app-tooltip style="position: absolute;" #tooltip [card]="card"></app-tooltip>
+    <div class="zoom">
+        <img [src]="card.iconSrc" [style.max-height.px]="cardHeight">
+        <img class="tick-icon" src="assets/Data/wpfg/resources/tick_icon.png" [hidden]="hideTick || !card.isSelected">
+        <div class="card-amount-background" *ngIf="card.amount > 0">
+            <p class="card-amount-text">{{card.amount}}</p>
+        </div>
+        <div class="card-infinite-background" *ngIf="card.maxCount == -1">
+            <p class="card-infinite-text">∞</p>
+        </div>
+        <div class="card-infinite-background" *ngIf="card.maxCount == 2">
+            <p class="card-double-text">x2</p>
+        </div>
+        <div class="card-res-list"
+            [style.margin-top.px]="-8-18*((card.foodCost > 0 ? 1 : 0)+(card.woodCost > 0 ? 1 : 0)+(card.coinCost > 0 ? 1 : 0)+(card.influenceCost > 0 ? 1 : 0)+(card.shipmentCost > 1 ? 1 : 0))">
+            <img class="card-res-icon" *ngIf="card.foodCost > 0" [src]="foodIcon">
+            <img class="card-res-icon" *ngIf="card.woodCost > 0" [src]="woodIcon">
+            <img class="card-res-icon" *ngIf="card.coinCost > 0" [src]="goldIcon">
+            <img class="card-res-icon" *ngIf="card.influenceCost > 0" [src]="influenceIcon">
+            <img class="card-res-icon" *ngIf="card.shipmentCost > 1" [src]="shipmentIcon">
+        </div>
+    </div>
+</div>

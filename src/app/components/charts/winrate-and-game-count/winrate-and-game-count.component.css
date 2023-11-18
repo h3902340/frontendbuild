@@ -1,0 +1,17 @@
+.filter-row {
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.align-right {
+    display: flex;
+    margin-left: auto;
+}
+
+@media (max-width: 600px) {
+    .align-right {
+        width: 100%;
+    }
+}

@@ -1,0 +1,21 @@
+.white-text {
+    color: aliceblue;
+    margin: 0px;
+    font-size: 20px;
+}
+
+.hud-size {
+    width: 30px;
+}
+
+.hud-size-large {
+    width: 34px;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Add build order</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <input matInput placeholder="Label" [(ngModel)]="data.label" (input)="toUppercase()">
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data.label" cdkFocusInitial>Add</button>
+</mat-dialog-actions>

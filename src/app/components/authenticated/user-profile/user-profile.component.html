@@ -1,0 +1,78 @@
+<section class="one-column-section" *ngIf="isBrowser">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="main-heading">User Profile</h1>
+        <div class="player-profile-widget dark-bg">
+          <div class="profile-info-img">
+            <img src="{{playerSummary.avatarfull}}" class="profilepic" />
+            <button mat-raised-button class="validation-button form-button" (click)="logout()">Logout </button>
+          </div>
+          <div class="profile-info" *ngIf="currentPlayer">
+            <h2 class="subheading mt-0">{{this.currentPlayer.playerInfos.name}}</h2>
+            <div class="player-info-wrapper dark-inset">
+              <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                <div class="form-element">
+                  <img class="media-icon" src="assets/icons/twitch-white-logo.png">
+                  <mat-form-field class="form-field">
+                    <mat-label>Twitch URL</mat-label>
+                    <input matInput type="text" formControlName="twitchURL">
+                    <mat-error class="mat-error"
+                      *ngIf="editForm.controls['twitchURL'].errors && editForm.controls['twitchURL'].errors['pattern']">
+                      Please enter a valid Twitch URL.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="form-element">
+                  <img class="media-icon" src="assets/icons/youtube-white-logo.png">
+                  <mat-form-field class="form-field">
+                    <mat-label>Youtube URL</mat-label>
+                    <input matInput type="text" formControlName="youtubeURL">
+                    <mat-error class="mat-error"
+                      *ngIf="editForm.controls['youtubeURL'].errors && editForm.controls['youtubeURL'].errors['pattern']">
+                      Please enter a valid YouTube URL.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!-- TODO: Add liquipedia icon and error checking -->
+                <div class="form-element">
+                  <img class="media-icon" src="assets/icons/liquipedia-icon-white.png">
+                  <mat-form-field class="form-field">
+                    <mat-label>Liquipedia</mat-label>
+                    <input matInput type="text" formControlName="liquipediaURL">
+                    <mat-error class="mat-error"
+                      *ngIf="editForm.controls['liquipediaURL'].errors && editForm.controls['liquipediaURL'].errors['pattern']">
+                      Please enter a valid Liquipedia Username.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="form-element">
+                  <img class="media-icon" src="assets/icons/discord-icon-white.png">
+                  <mat-form-field class="form-field">
+                    <mat-label>Discord URL</mat-label>
+                    <input matInput type="text" formControlName="discordURL">
+                    <mat-error class="mat-error"
+                      *ngIf="editForm.controls['discordURL'].errors && editForm.controls['discordURL'].errors['pattern']">
+                      Please enter a valid Discord URL.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="form-element">
+                  <button mat-raised-button class="validation-button form-button" type="submit">Update URLs</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="this.currentPlayer">
+        <app-player-profile [idPlayer]="this.currentPlayer.playerInfos.idPlayer"></app-player-profile>
+        <app-player-matchs [idPlayer]="this.currentPlayer.playerInfos.idPlayer"></app-player-matchs>
+      </ng-container>
+
+    </div>
+  </div>
+</section>

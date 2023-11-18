@@ -1,0 +1,15 @@
+@import 'src/app/components/home-page/home-shared-styles.css';
+
+.info-banner {
+    display: flex;
+    flex: 1;
+    gap: 1%;
+}
+
+.civ-pool {
+    width: 50%;
+}
+
+.players-online {
+    width: 50%;
+}

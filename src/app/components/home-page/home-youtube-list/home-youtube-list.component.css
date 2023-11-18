@@ -1,0 +1,132 @@
+.main-heading {
+    margin-top: 2%;
+}
+
+.media-icon {
+    position: absolute;
+    height: 12%;
+    width: 12%;
+    bottom: 0.8rem;
+    margin-left: 5%;
+}
+
+.main-heading::after {
+    width: 114%;
+}
+
+.video-list {
+    display: flex;
+}
+
+.video {
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+}
+
+.thumbnail-container {
+    position: relative;
+    display: flex;
+}
+
+.thumbnail {
+    display: flex;
+    flex: 1;
+    object-fit: cover; /* Maintain aspect ratio and cover entire div */
+    border-radius: 15px 15px 0 0;
+}
+
+.duration-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 5px;
+    font-family: 'arial';
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+.bottom-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 3%;
+    border-radius: 0 0 15px 15px;
+    align-items: center;
+}
+
+.avatar {
+    display: flex;
+    max-width: 20%;
+    max-height: 20%;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    object-fit: contain;
+    align-items: center;
+    margin-right: 0.5rem;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.title {
+    color: white;
+    font-family: 'arial';
+    font-weight: bold;
+    font-size: 1rem;
+    min-height: 2.2rem;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+    -webkit-line-clamp: 2;
+}
+
+.content-creator {
+    overflow: hidden;
+    color: #aaaaaa;
+    font-family: 'arial';
+    font-size: 0.9rem;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+}
+
+.grey-text {
+    color: #aaaaaa;
+    font-family: 'arial';
+    font-size: 0.9rem;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+}
+
+.video-info {
+    display: flex;
+}
+
+.dot {
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+@media only screen and (max-width: 500px) {
+    .title {
+        font-size: 0.7rem;
+        min-height: 1.6rem;
+    }
+
+    .content-creator {
+        font-size: 0.7rem;
+    }
+
+    .grey-text {
+        font-size: 0.7rem;
+    }
+} 

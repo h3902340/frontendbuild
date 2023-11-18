@@ -1,0 +1,28 @@
+<div *ngFor="let link of youtubeLinks; let i = index" class="video">
+    <div class="video-container">
+        <iframe *ngIf="!editTable[i]" [src]="link | safeUrl" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+
+        <div *ngIf="editTable[i]">
+            <input matInput type="text" *ngIf="editMode" [(ngModel)]="youtubeLinks[i]" placeholder="Embed youtube URL"
+                style="width: 100%;" />
+            <button mat-raised-button class="icon-add" *ngIf="editMode" (click)="validateLink(i)">Validate</button>
+        </div>
+    </div>
+    <div *ngIf="editMode && !editTable[i]" style="display:flex; justify-content: space-evenly; margin:20px;">
+        <button mat-raised-button class="icon-add" (click)="enableEditMode(i)"> <mat-icon
+                class="custom-icon-button ">edit</mat-icon> Edit
+        </button>
+        <button mat-raised-button class="icon-add" (click)="deleteLink(i)"><mat-icon aria-hidden="false"
+                aria-label="Delete icon">delete_forever</mat-icon>Delete</button>
+    </div>
+
+
+</div>
+<div style="display:flex; justify-content: center; margin:20px;">
+    <button mat-raised-button *ngIf="editMode" class="icon-add" (click)="addLink()">
+        <mat-icon>add</mat-icon>
+        Add
+    </button>
+</div>

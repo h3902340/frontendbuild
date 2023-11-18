@@ -1,0 +1,67 @@
+<div class="container" style="position: relative;">
+    <h2 class="main-heading" style="white-space: nowrap;">{{mapTitle}}</h2>
+    <div style="display: flex; justify-content: flex-end;">
+        <app-searchbar [placeHolder]="searchbarPlaceholder" style="align-self: flex-end;"
+            (searchChanged)="onSearchChanged($event)"></app-searchbar>
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px;">
+            <label class="one-column-section">{{mapTypeText}}</label>
+            <select class="form-select" id="game-mode" [(ngModel)]="currentMapType" (change)="onSelectMapType()">
+                <option *ngFor="let mapType of mapTypes; let i = index" [value]="mapType" selected>
+                    {{mapTypeNames[i]}}
+                </option>
+            </select>
+        </div>
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px; margin-left: 0px;">
+            <label class="one-column-section">{{languageText}}</label>
+            <select class="form-select" id="game-mode" [(ngModel)]="selectedLanguage" (change)="onSelectLanguage()">
+                <option *ngFor="let language of languages; let i = index" [value]="language" selected>
+                    {{languageDisplayNames[i]}}
+                </option>
+            </select>
+        </div>
+
+    </div>
+    <div style="display: flex;">
+        <div class="map-zone" [style.min-height.px]="101">
+            <div class="grid" *ngFor="let map of mapArray;">
+                <img class="map zoom" [src]="getMapPath(map.info)" (click)="onMapClick(map.info)">
+                <p class="map-name">{{map.name}}</p>
+            </div>
+        </div>
+        <div class="map-info-zone-outer">
+            <div class="map-info-zone" *ngIf="currentMapName">
+                <div style="display: flex; flex-direction: column; width: 100%; align-items: center;">
+                    <img style="width: 160px;" [src]="currentMapPath">
+                    <p style="color: aliceblue; font-size: 20px;">{{currentMapName}}</p>
+                </div>
+                <p style="color: aliceblue; white-space: pre-line;" [innerHTML]="detailText"></p>
+                <p style="color: aliceblue;">{{currentMapAreaEquation}}</p>
+                <div class="resource-zone">
+                    <div class="resource-slot">
+                        <img class="resource-icon" [src]="foodIcon">
+                        <span class="resource-text">{{huntCount}}</span>
+                    </div>
+                    <div class="resource-slot">
+                        <img class="resource-icon" [src]="woodIcon">
+                        <span class="resource-text">{{woodCount}}</span>
+                    </div>
+                    <div class="resource-slot">
+                        <img class="resource-icon" [src]="goldIcon">
+                        <span class="resource-text">{{mineCount}}</span>
+                    </div>
+                    <div *ngIf="fishCount" class="resource-slot">
+                        <img class="resource-icon" src="assets/fish_icon.png">
+                        <span class="resource-text">{{fishCount}}</span>
+                    </div>
+                    <div *ngIf="whaleCount" class="resource-slot">
+                        <img class="resource-icon" src="assets/whale_icon.png">
+                        <span class="resource-text">{{whaleCount}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spinner" [hidden]="hideSpinner">
+        <mat-progress-spinner [value]="progress"></mat-progress-spinner>
+    </div>
+</div>

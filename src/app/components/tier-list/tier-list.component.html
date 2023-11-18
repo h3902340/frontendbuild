@@ -1,0 +1,151 @@
+<div class="one-column-section">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row align-items-end justify-content-between">
+            <div class="p-2">
+                <h1 class="main-heading">Tier list</h1>
+            </div>
+            <div class="p-2" style="text-align: left; ">
+                <mat-slider style="width: 500px;" [color]="sliderTheme" [disabled]="false" [max]="7" [min]="1"
+                    [step]="1" [discrete]="true" [showTickMarks]="true">
+                    <input matSliderThumb [(ngModel)]="tierRowCount" (input)="onSliderChanged($event)" #slider>
+                </mat-slider>
+            </div>
+            <div class="p-2 d-flex flex-column flex-lg-row justify-content-start justify-content-lg-end"
+                style="text-align: right;">
+                <button mat-raised-button class="validation-button form-button m-2" style="width: 150px;"
+                    (click)="reset()">
+                    <mat-icon>refresh</mat-icon>Reset
+                </button>
+                <button mat-raised-button class="validation-button form-button m-2" style="width: 150px;"
+                    (click)="downloadScreenshot()">
+                    <mat-icon>download</mat-icon>Capture
+                </button>
+                <button mat-raised-button matTooltip="Copied to clipboard!" #tooltip="matTooltip"
+                    (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="tooltip.hide();"
+                    (click)="tooltip.show();" class="validation-button form-button m-2" style="width: 150px;"
+                    [cdkCopyToClipboard]="copySharedLink()">
+                    <mat-icon>link</mat-icon>Copy Link
+                </button>
+            </div>
+        </div>
+        <div id="tier-list">
+            <div style="z-index: 1;">
+                <div style="display: flex;" [hidden]="tierRowCount < 1">
+                    <div class="s-tier-zone-color" [style.width.px]="cardHeight + 1"
+                        [style.min-height.px]="cardHeight + 1"
+                        style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                        <p class="tier-text">S</p>
+                    </div>
+                    <div class="zone-color" id="s-tier-zone" [style.min-height.px]="cardHeight + 1"
+                        style="border: solid 1px black; flex: 1;">
+                        <img name="s-tier" *ngFor="let civ of sTierArray; let i = index"
+                            [src]="civIdToNameRectangle(civ)" [style.max-height.px]="cardHeight"
+                            style="position: relative;" [style.left.px]="0" [style.top.px]="0" cdkDrag
+                            (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="dragMove($event)"
+                            (cdkDragEnded)="dragEnd($event)">
+                    </div>
+                </div>
+                <img id="watermark" src="assets/ffpLogo.png" [style.max-height.px]="cardHeight"
+                    [style.margin-top.px]="-cardHeight"
+                    style="float: right; position: relative; z-index: 2; opacity: 1;" [hidden]="hideWatermark">
+                <div style="display: flex;" [hidden]="tierRowCount < 2">
+                    <div class="a-tier-zone-color" [style.width.px]="cardHeight + 1"
+                        [style.min-height.px]="cardHeight + 1"
+                        style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                        <p class="tier-text">A</p>
+                    </div>
+                    <div class="zone-color" id="a-tier-zone" [style.min-height.px]="cardHeight + 1"
+                        style="border: solid 1px black; flex: 1;">
+                        <img name="a-tier" *ngFor="let civ of aTierArray; let i = index"
+                            [src]="civIdToNameRectangle(civ)" [style.max-height.px]="cardHeight"
+                            style="position: relative;" [style.left.px]="0" [style.top.px]="0" cdkDrag
+                            (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="dragMove($event)"
+                            (cdkDragEnded)="dragEnd($event)">
+                    </div>
+                </div>
+                <div style="display: flex;" [hidden]="tierRowCount < 3">
+                    <div class="b-tier-zone-color" [style.width.px]="cardHeight + 1"
+                        [style.min-height.px]="cardHeight + 1"
+                        style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                        <p class="tier-text">B</p>
+                    </div>
+                    <div class="zone-color" id="b-tier-zone" [style.min-height.px]="cardHeight + 1"
+                        style="border: solid 1px black; flex: 1;">
+                        <img name="b-tier" *ngFor="let civ of bTierArray; let i = index"
+                            [src]="civIdToNameRectangle(civ)" [style.max-height.px]="cardHeight"
+                            style="position: relative;" [style.left.px]="0" [style.top.px]="0" cdkDrag
+                            (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="dragMove($event)"
+                            (cdkDragEnded)="dragEnd($event)">
+                    </div>
+                </div>
+                <div style="display: flex;" [hidden]="tierRowCount < 4">
+                    <div class="c-tier-zone-color" [style.width.px]="cardHeight + 1"
+                        [style.min-height.px]="cardHeight + 1"
+                        style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                        <p class="tier-text">C</p>
+                    </div>
+                    <div class="zone-color" id="c-tier-zone" [style.min-height.px]="cardHeight + 1"
+                        style="border: solid 1px black; flex: 1;">
+                        <img name="c-tier" *ngFor="let civ of cTierArray; let i = index"
+                            [src]="civIdToNameRectangle(civ)" [style.max-height.px]="cardHeight"
+                            style="position: relative;" [style.left.px]="0" [style.top.px]="0" cdkDrag
+                            (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="dragMove($event)"
+                            (cdkDragEnded)="dragEnd($event)">
+                    </div>
+                </div>
+                <div style="display: flex;" [hidden]="tierRowCount < 5">
+                    <div class="d-tier-zone-color" [style.width.px]="cardHeight + 1"
+                        [style.min-height.px]="cardHeight + 1"
+                        style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                        <p class="tier-text">D</p>
+                    </div>
+                    <div class="zone-color" id="d-tier-zone" [style.min-height.px]="cardHeight + 1"
+                        style="border: solid 1px black; flex: 1;">
+                        <img name="d-tier" *ngFor="let civ of dTierArray; let i = index"
+                            [src]="civIdToNameRectangle(civ)" [style.max-height.px]="cardHeight"
+                            style="position: relative;" [style.left.px]="0" [style.top.px]="0" cdkDrag
+                            (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="dragMove($event)"
+                            (cdkDragEnded)="dragEnd($event)">
+                    </div>
+                </div>
+                <div style="display: flex;" [hidden]="tierRowCount < 6">
+                    <div class="e-tier-zone-color" [style.width.px]="cardHeight + 1"
+                        [style.min-height.px]="cardHeight + 1"
+                        style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                        <p class="tier-text">E</p>
+                    </div>
+                    <div class="zone-color" id="e-tier-zone" [style.min-height.px]="cardHeight + 1"
+                        style="border: solid 1px black; flex: 1;">
+                        <img name="e-tier" *ngFor="let civ of eTierArray; let i = index"
+                            [src]="civIdToNameRectangle(civ)" [style.max-height.px]="cardHeight"
+                            style="position: relative;" [style.left.px]="0" [style.top.px]="0" cdkDrag
+                            (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="dragMove($event)"
+                            (cdkDragEnded)="dragEnd($event)">
+                    </div>
+                </div>
+                <div style="display: flex;" [hidden]="tierRowCount < 7">
+                    <div class="f-tier-zone-color" [style.width.px]="cardHeight + 1"
+                        [style.min-height.px]="cardHeight + 1"
+                        style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                        <p class="tier-text">F</p>
+                    </div>
+                    <div class="zone-color" id="f-tier-zone" [style.min-height.px]="cardHeight + 1"
+                        style="border: solid 1px black; flex: 1;">
+                        <img name="f-tier" *ngFor="let civ of fTierArray; let i = index"
+                            [src]="civIdToNameRectangle(civ)" [style.max-height.px]="cardHeight"
+                            style="position: relative;" [style.left.px]="0" [style.top.px]="0" cdkDrag
+                            (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="dragMove($event)"
+                            (cdkDragEnded)="dragEnd($event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zone-color" id="civ-list-zone" [style.min-height.px]="cardHeight + 1"
+            style="border: solid 1px black;">
+            <img name="civ-list" *ngFor="let civ of civArray; let i = index" [src]="civIdToNameRectangle(civ)"
+                [style.max-height.px]="cardHeight" style="position: relative; cursor: pointer;" [style.left.px]="0" [style.top.px]="0"
+                cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragMoved)="dragMove($event)"
+                (cdkDragEnded)="dragEnd($event)">
+        </div>
+    </div>
+</div>

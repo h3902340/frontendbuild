@@ -1,0 +1,21 @@
+<div class="hall-of-fame rounded-border-fade-top">
+    <div class="left">
+        <img class="cup" src="assets/images/hall_of_fame_cup.png" />
+        <div class="left-container">
+            <div class="text1 responsive-text">Community Champions</div>
+            <div class="text2 responsive-text">Hall of Fame</div>
+        </div>
+    </div>
+    <div class="right">
+        <mat-nav-list class="list" *ngFor="let champion of championList">
+            <a class="right-container" href="{{champion.profile_url}}">
+                <div class="text3 responsive-text">{{champion.name}}</div>
+                <img class="icon" src={{champion.image}} />
+                <div class="tournament-name">
+                    <div class="text4 responsive-text">{{champion.tournament_name}}</div>
+                    <div class="text4 responsive-text">{{champion.tournament_subname}}</div>
+                </div>
+            </a>
+        </mat-nav-list>
+    </div>
+</div>

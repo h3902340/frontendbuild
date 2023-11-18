@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package backend;
+option java_package = "com.aoe3leader.backend.proto";
+option java_outer_classname = "MatchHistory";
+
+import "google/protobuf/timestamp.proto";
+
+message MatchRecord {
+    repeated MatchInfo matchList = 1;
+}
+
+message MatchInfo {    
+    int64 idGame = 1;
+    int32 idMap = 2;
+    google.protobuf.Timestamp startDate = 3;
+    google.protobuf.Timestamp endDate = 4;
+    int64 gameLength = 5;
+    int32 gameMode = 6;
+    bool isRanked = 7;
+    int32 playerCount = 8;
+    repeated MatchPlayerInfo playerInfoList = 9;
+}
+
+message MatchPlayerInfo {
+    int64 idPlayer = 1;
+    string playerName = 2;
+    int32 team = 3;
+    int32 result = 4;
+    int32 eloBefore = 5;
+    int32 eloAfter = 6;
+    int32 idCiv = 7;
+}
+
+message MatchPlayerDetail {
+    int64 idPlayer = 1;
+    string playerName = 2;
+    int32 team = 3;
+    int32 result = 4;
+    int32 eloBefore = 5;
+    int32 eloAfter = 6;
+    int32 idCiv = 7;
+    int32 isHigestScore = 8;
+    int32 isLeastResources = 9;
+    int32 isMostImprovements = 10;
+    int32 isMostKills = 11;
+    int32 isMostLosses = 12;
+    int32 isMostMilitary = 13;
+    int32 isMostResources = 14;
+    int32 isMostTreasures = 15;
+    int32 scoreEconomic = 16;
+    int32 scoreMilitary = 17;
+    int32 scoreTotal = 18;
+    int32 buildingLost = 19;
+    int32 buildingRazed = 20;
+    int32 unitsConverted = 21;
+    int32 unitsKilled = 22;
+    int32 unitsLost = 23;
+}

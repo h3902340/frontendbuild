@@ -1,0 +1,132 @@
+<div style="display: flex; align-items: flex-start;">
+  <h1 class="main-heading">Player Profile</h1>
+  <p class="last-update-text" style="margin-left: auto;">Last Update: {{lastUpdateDateString}}</p>
+</div>
+<div class="player-profile-widget dark-bg">
+  <div class="profile-info-img">
+    <img src="{{avatarlUrl}}" class="profilepic" />
+    <div class="profile-info-highlights">
+      <div class="container" *ngIf="this.player.rateCiv1">
+        <div class="highlights-row">
+          <h2 class="subheading mt-0 no-wrap">Most Played</h2>
+          <mat-grid-list cols="3" [gutterSize]="'1rem'">
+            <mat-grid-tile><img src="{{civFlagUrl1}}" class="flag" alt="{{this.player.rateCiv1}}%"
+                title="{{this.player.rateCiv1}}%" /></mat-grid-tile>
+            <mat-grid-tile *ngIf="this.player.rateCiv2"><img src="{{civFlagUrl2}}" class="flag"
+                alt="{{this.player.rateCiv2}}%" title="{{this.player.rateCiv2}}%" /></mat-grid-tile>
+            <mat-grid-tile *ngIf="this.player.rateCiv3"><img src="{{civFlagUrl3}}" class="flag"
+                alt="{{this.player.rateCiv3}}%" title="{{this.player.rateCiv3}}%" /></mat-grid-tile>
+          </mat-grid-list>
+          <!--
+          <div class="col-4">
+            <img src="{{civFlagUrl1}}"  class="flag" alt="{{this.player.rateCiv1}}%" title="{{this.player.rateCiv1}}%" />
+          </div>
+          <div class="col-4" *ngIf="this.player.rateCiv2">
+            <img src="{{civFlagUrl2}}"  class="flag" alt="{{this.player.rateCiv2}}%" title="{{this.player.rateCiv2}}%" />
+          </div>
+          <div class="col-4" *ngIf="this.player.rateCiv3">
+            <img src="{{civFlagUrl3}}"  class="flag" alt="{{this.player.rateCiv3}}%" title="{{this.player.rateCiv3}}%" />
+          </div>  
+          -->
+        </div>
+      </div>
+      <ng-container *ngIf="Stat1v1streakMax">
+        <div class="highlights-row">
+          <h2 class="subheading mt-0">Highest Streak</h2>
+          <p>{{Stat1v1streakMax}}</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="profile-info" style="margin-left: 1em; margin-top: 1em;">
+    <h2 class="subheading mt-0 no-wrap">Player Information</h2>
+    <div class="player-info-wrapper dark-inset">
+      <div class="row">
+        <div class="col-lg-4">
+          <span class="light-th">
+            &nbsp;&nbsp;&nbsp;Username:
+          </span>
+          <span>
+            <strong>{{this.name}}</strong>
+          </span>
+        </div>
+        <div class="col-lg-4">
+          <span class="light-th">
+            Clan Name:
+          </span>
+          <span>
+            <strong>{{this.clanFullName}}</strong>
+          </span>
+        </div>
+        <div class="col-lg-4">
+          <span class="light-th">
+            Abbreviation:
+          </span>
+          <span>
+            <strong>{{this.clan}}</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+    <h2 class="subheading mt-20">Statistics</h2>
+    <div class="player-info-wrapper dark-inset">
+      <div class="table-responsive">
+        <table class="table table-dark noborder-table">
+          <thead>
+            <tr>
+              <th class="light-th-center" scope="col">Mode</th>
+              <th class="light-th-center" scope="col">Rank</th>
+              <th class="light-th-center" scope="col">Rating</th>
+              <th class="light-th-center" scope="col">Games</th>
+              <th class="light-th-center" scope="col">Wins</th>
+              <th class="light-th-center" scope="col">Losses</th>
+              <th class="light-th-center" scope="col">Streak</th>
+              <th class="light-th-center" scope="col">Win Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let elo of player.playerElo">
+              <tr>
+                <!-- Mode -->
+                <td>{{getGameMode(elo.gameMode)}}</td>
+                <!-- Rank -->
+                <td>{{elo.rankActive | rankFormat}}</td>
+                <!-- Rating -->
+                <td>{{elo.rating}}</td>
+                <!-- Games -->
+                <td>{{elo.wins + elo.losses + elo.disconnections}}</td>
+                <!-- Wins -->
+                <td>{{elo.wins}}</td>
+                <!-- Losses -->
+                <td>{{elo.losses + elo.disconnections}}</td>
+                <!-- Streak -->
+                <td>
+                  <div class="up-trend" style="text-align: left" *ngIf="elo.streak > 0; else elseBlock">
+                    <span class="icon">&nbsp;&nbsp;<ng-icon name="heroArrowUpRight"></ng-icon></span>
+                    <span>{{elo.streak}}</span>
+                  </div>
+                  <ng-template #elseBlock>
+                    <div class="down-trend" style="text-align: left">
+                      <span class="icon">&nbsp;&nbsp;<ng-icon name="heroArrowDownRight"></ng-icon></span>
+                      <span>{{-elo.streak}}</span>
+                    </div>
+                  </ng-template>
+                </td>
+                <!-- Win Rate -->
+                <td>
+                  <span class="up-trend" *ngIf="elo.wins > elo.losses + elo.disconnections;">
+                    {{getWinRatio(elo.wins, elo.losses + elo.disconnections)}}%
+                  </span>
+                  <div class="down-trend" *ngIf="elo.wins < elo.losses + elo.disconnections;">
+                    {{getWinRatio(elo.wins, elo.losses + elo.disconnections)}}%
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <app-rating-history [idPlayer]="idPlayer"></app-rating-history>
+  </div>
+</div>

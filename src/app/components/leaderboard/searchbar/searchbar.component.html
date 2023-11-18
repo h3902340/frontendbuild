@@ -1,0 +1,13 @@
+<form>
+  <div class="input-group">
+    <span class="input-group-text" id="basic-addon1"><svg width="68" height="68" viewBox="-15 -15 98 98" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M65.7507 65.7507L50.3693 50.3693M50.3693 50.3693C53.0003 47.7382 55.0874 44.6147 56.5113 41.177C57.9352 37.7394 58.6681 34.0549 58.6681 30.3341C58.6681 26.6132 57.9352 22.9287 56.5113 19.4911C55.0874 16.0534 53.0003 12.9299 50.3693 10.2989C47.7382 7.66779 44.6147 5.58072 41.177 4.1568C37.7394 2.73288 34.0549 2 30.3341 2C26.6132 2 22.9287 2.73288 19.4911 4.1568C16.0534 5.58072 12.9299 7.66779 10.2989 10.2989C4.98519 15.6125 2 22.8194 2 30.3341C2 37.8487 4.98519 45.0556 10.2989 50.3693C15.6125 55.6829 22.8194 58.6681 30.3341 58.6681C37.8487 58.6681 45.0556 55.6829 50.3693 50.3693Z"
+          stroke="#656565" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg></span>
+    <input class="search-style" type="search" class="form-control" [placeholder]="placeHolder" [value]="value"
+      aria-label="Search player" aria-describedby="basic-addon1" matInput [formControl]="myControl"
+      (click)="onInputClicked()">
+  </div>
+</form>

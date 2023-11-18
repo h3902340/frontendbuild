@@ -1,0 +1,87 @@
+.totalGame {
+    font-size: 10px;
+}
+
+.very-green {
+    color: #00ff00;
+}
+
+.light-green {
+    color: #90EE90;
+    /* LightGreen */
+}
+
+.light-red {
+    color: #FF6347;
+    /* Tomato */
+}
+
+.very-red {
+    color: #ff0000;
+}
+
+@media (min-width: 1500px) {
+
+    /* Styles pour un écran > 1600px ici */
+    .two-columns-table {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .column {
+        width: 50%;
+        padding-right: 6rem;
+        box-sizing: border-box;
+
+    }
+
+    .column:last-child {
+        padding-right: 0;
+    }
+}
+
+th {
+    white-space: nowrap;
+    font-weight: bold;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(110, 110, 110);
+    text-shadow: #000000 1px 1px 1px;
+    font-variant: normal;
+    vertical-align: middle;
+}
+
+td {
+    text-align: center;
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+.left-table {
+    margin-right: 100px;
+}
+
+.filter-row {
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.align-right {
+    display: flex;
+    margin-left: auto;
+}
+
+@media (max-width: 600px) {
+    .align-right {
+        width: 100%;
+    }
+}
+
+.material-icons {
+    font-size: 14px;
+    font-weight: bold;
+    transition: transform 1s !important;
+    vertical-align: -1px;
+}

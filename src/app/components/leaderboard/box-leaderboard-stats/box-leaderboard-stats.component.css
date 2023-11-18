@@ -1,0 +1,37 @@
+.categorieTitle{
+    font-weight: bold;
+}
+
+.divLine{
+    width: 100%;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+@keyframes change-color {
+    0% {
+      color: #6A78D1;
+    }
+    25% {
+      color: #00A4BD;
+    }
+    50% {
+      color: #FF7A59;
+    }
+    75% {
+      color: #00BDA5;
+    }
+    100% {
+      color: #6A78D1;
+    }
+  }
+  
+  .glow {
+    animation-name: change-color;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    font-family: Arial;
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+  }

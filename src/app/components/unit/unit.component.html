@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="p-2">
+        <h1 class="main-heading">{{unitTitle}}</h1>
+    </div>
+    <div style="display: flex; align-items: flex-end;">
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px; margin-right: 0px;">
+            <label class="one-column-section">{{unityTypeText}}</label>
+            <select class="form-select" id="game-mode" (change)="onSelectUnitType($event)" [value]="selectedUnitType">
+                <option *ngFor="let unitType of unitTypeOptions; let i = index" [value]="unitType">
+                    {{unitTypeOptionNames[i]}}
+                </option>
+            </select>
+        </div>
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px; margin-left: 0px;  margin-right: 0px;">
+            <label class="one-column-section">{{languageText}}</label>
+            <select class="form-select" id="game-mode" (change)="onSelectLanguage($event)" [value]="selectedLanguage">
+                <option *ngFor="let language of languages; let i = index;" [value]="language">
+                    {{languageNames[i]}}
+                </option>
+            </select>
+        </div>
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px; margin-left: 0px; margin-right: 0px;">
+            <label class="one-column-section">{{civText}}</label>
+            <select class="form-select" id="game-mode" (change)="onSelectCiv($event)" [value]="selectedCiv">
+                <option *ngFor="let civ of civList; let i = index;" [value]="civ">
+                    {{civDisplayNames[i]}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div style="background-color: rgb(46, 46, 46);">
+        <div style="margin: 0px; padding: 10px;" *ngFor="let unit of unitInfos">
+            <app-unit-entry [unit]="unit" [timeHeading]="timeHeading"></app-unit-entry>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+.zone-color {
+    background-color: rgb(52, 52, 52);
+    border: solid 1px black;
+}
+
+.ageup-zone-color {
+    background-color: rgb(147, 7, 7);
+}
+
+.age1-zone-color {
+    background-color: rgb(147, 84, 7);
+}
+
+.age2-zone-color {
+    background-color: rgb(49, 147, 7);
+}
+
+.age3-zone-color {
+    background-color: rgb(7, 147, 105);
+}
+
+.age4-zone-color {
+    background-color: rgb(41, 52, 211);
+}
+
+.card-grid {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+}
+
+.deck-name {
+    color: aliceblue;
+    font-size: 24px;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.full-page {
+    margin: auto;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.spinner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000070;
+}
+
+.deck-size-text {
+    color: aliceblue;
+    align-self: center;
+    padding-right: 2rem;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-left: auto;
+    white-space: nowrap;
+}

@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package backend;
+option java_package = "com.aoe3leader.backend.proto";
+option java_outer_classname = "TechTree";
+
+message TechInfoList {
+    repeated TechInfo techInfoList = 1;
+}
+
+message TechInfo {
+    string name = 1;
+    string type = 2;
+    TechStatus status = 3;
+    int32 displaynameid = 4;
+    float researchpoints = 5;
+    string icon = 6;
+    int32 rollovertextid = 7;
+    repeated TechEffectInfo effects = 8;
+    repeated TechCostInfo costs = 9;
+}
+
+message TechEffectInfo {
+    string type = 1;
+    float amount = 2;
+    string subtype = 3;
+    TechRelativity relativity = 4;
+    string text = 5;
+    TechTargetType targettype = 6;
+    string targettext = 7;
+    TechStatus status = 8;
+    string action = 9;
+    string tech = 10;
+    int32 newname = 11;
+    int32 newrollover = 12;
+    string unittype = 13;
+    TechResourceType resource = 14;
+    bool allactions = 15;
+    string proto = 16;
+    int32 neweditorname = 17;
+    int32 newshortrollover = 18;
+    int32 stringid = 19;
+    float resvalue = 20;
+    TechComponentType component = 21;
+    TechArmorType newtype = 22;
+    float resourcecap = 23;
+    string protopower = 24;
+    string toprotoid = 25;
+    string fromprotoid = 26;
+    float multiplier = 27;
+    TechResourceType toresource = 28;
+    TechResourceType fromresource = 29;
+    float amount2 = 30;
+    string unittype2 = 31;
+    string civ = 32;
+    string counttype = 33;
+    int32 maxcount = 34;
+    int32 ageprereq = 35;
+    int32 unitcount = 36;
+    bool includeself = 37;
+    string protoaction = 38;
+    TechArmorType armortype = 39;
+    TechResourceType resource2 = 40;
+    bool extrabounty = 41;
+    float bountyrate = 42;
+    float unitcap = 43;
+    string tactic = 44;
+}
+
+message TechCostInfo {
+    TechResourceType resourcetype = 1;
+    float amount = 2;
+}
+
+enum TechStatus {
+    None = 0;
+    Active = 1;
+    Obtainable = 2;
+    Unobtainable = 3;
+}
+
+enum TechRelativity {
+    Absolute = 0;
+    Assign = 1;
+    BasePercent = 2;
+    DefaultValue = 3;
+    Override = 4;
+    Percent = 5;
+}
+
+enum TechArmorType {
+    Hand = 0;
+    Ranged = 1;
+    Siege = 2;
+}
+
+enum TechResourceType {
+    Food = 0;
+    Gold = 1;
+    Influence = 2;
+    Ships = 3;
+    Trade = 4;
+    Wood = 5;
+    XP = 6;
+}
+
+enum TechComponentType {
+    BuyFactor = 0;
+    SellFactor = 1;
+    SellFactorSpecific = 2;
+}
+
+enum TechTargetType {
+    Player = 0;
+    Proto = 1;
+    ProtoUnit = 2;
+    Tech = 3;
+    TechAll = 4;
+    TechWithFlag = 5;
+}

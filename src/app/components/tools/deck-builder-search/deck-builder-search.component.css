@@ -1,0 +1,20 @@
+.card-grid {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+}
+
+.tabcontent {
+    padding: 6px 12px;
+    border: 1px solid #000000;
+    border-top: none;
+    color: #CCC;
+    width: 100%;
+    height: fit-content;
+    display: block;
+}
+
+.zone-color {
+    background-color: rgb(52, 52, 52);
+    border: solid 1px black;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package backend;
+option java_package = "com.aoe3leader.backend.proto";
+option java_outer_classname = "TierList";
+
+message TierListSave {
+    repeated int32 sTier = 1;
+    repeated int32 aTier = 2;
+    repeated int32 bTier = 3;
+    repeated int32 cTier = 4;
+    repeated int32 dTier = 5;
+    repeated int32 eTier = 6;
+    repeated int32 fTier = 7;
+    repeated int32 civList = 8;
+    int32 tierCount = 9;
+}

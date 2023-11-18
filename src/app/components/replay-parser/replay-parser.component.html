@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="p-2">
+        <h1 class="main-heading">Replay Parser</h1>
+    </div>
+    <div style="display: flex; flex-direction: row;">
+        <input class="deck-name" accept=".age3Yrec" (change)="onFileSelected($event)" type="file" id="fileUpload">
+        <p *ngIf="version" class="deck-name" style="margin-left: auto;">Version: {{version}}</p>
+    </div>
+    <p *ngIf="isReplayInvalid" class="deck-name" style="color: red;">Not able to parse this replay. Please contact
+        Canyougiant on discord. Send me your replay.</p>
+    <div class="zone-color" *ngIf="mapSrc" style="display: flex; flex-direction: row;">
+        <div style="display: flex; flex-direction: column;">
+            <img style="width: 230px;" [src]="mapSrc">
+            <p class="deck-name" style="text-align: center;">{{localizedMapName}}</p>
+            <p class="deck-name" style="text-align: center;">{{durationTitle}}: {{toHHMMSS(duration)}}</p>
+            <div style="display: flex; flex-direction: row;">
+                <button mat-raised-button class="validation-button form-button m-2"
+                    style="width: 150px; align-self: flex-start; position: relative; z-index: 0; border: 1px solid rgb(178, 178, 178);"
+                    (click)="showWinners()"><span style="white-space: nowrap;">{{winnerTitle}}</span>
+                </button>
+                <p [hidden]="!isShowWinners" class="deck-name" style="width: 50px; text-wrap: nowrap;">{{winnerTeam}}
+                </p>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row; margin-left: 10px; margin-right: 10px;"
+            *ngFor="let team of teams">
+            <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; flex-direction: row; align-items: flex-start; margin-top: 5px; margin-bottom: 5px;"
+                    *ngFor="let player of team">
+                    <p class="deck-name" style="margin-top: 10px; margin-right: 10px; padding-right: 10px;"
+                        [style.background-color]="player.color"
+                        [style.color]="(player.color == '#ffff00' || player.color == '#00ffff') ? 'black' : 'white'"
+                        [style.border]="(player.color == '#ffff00' || player.color == '#00ffff') ? 'black solid' : 'white solid'">
+                        {{player.teamId}}</p>
+                    <img style="width: 60px; margin-right: 5px;" [src]="player.civFlagSrc">
+                    <img style="width: 60px;" [src]="player.avatarSrc">
+                    <p class="deck-name" style="margin: auto; margin-left: 5px;">{{player.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="mapSrc" style="display: flex; flex-direction: row;">
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px; margin-left: 0px;">
+            <label class="one-column-section">{{playerTitle}}</label>
+            <select class="form-select" id="game-mode" (change)="onSelectPlayer($event)" [value]="defaultPlayer">
+                <option *ngFor="let player of players;" [value]="player.name">
+                    {{player.name}}
+                </option>
+            </select>
+        </div>
+        <div class="game-mode-select dark-bg-no-shadow" style="width: 330px; margin-left: 0px;">
+            <label class="one-column-section">{{deckTitle}}</label>
+            <select class="form-select" id="game-mode" (change)="onSelectDeck($event)" [value]="defaultDeck">
+                <option *ngFor="let deck of currentDeckList;" [value]="deck.name">
+                    {{deck.name}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div *ngIf="currentDeck" id="build4" name="tabcontent2" class="tabcontent2 zone-color" style="position: relative;">
+        <div style="background-color: rgb(43, 43, 43); display: flex; align-items: flex-start;">
+            <img style="width: 260px; float: left; position: relative;" [src]="civFlagLeft">
+            <p class="deck-size-text">{{currentDeck.name}}</p>
+            <p class="deck-size-text">{{sizeText}}{{currentDeck.cardCount}}/{{currentDeck.cardCount}}</p>
+        </div>
+        <div style="display: flex;">
+            <div class="age1-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img [src]="age1Src">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of cardAge1;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                        [hideTick]="true"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="age2-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img [src]="age2Src">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of cardAge2;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                        [hideTick]="true"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="age3-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img [src]="age3Src">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of cardAge3;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                        [hideTick]="true"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="age4-zone-color" [style.width.px]="cardHeight + 1"
+                [style.min-height.px]="cardHeight+cardPadding*2+2"
+                style="display: flex; align-items: center; justify-content: center; border: solid 1px black;">
+                <img [src]="age4Src">
+            </div>
+            <div class="zone-color" [style.min-height.px]="cardHeight + 1" style="border: solid 1px black; flex: 1;">
+                <div class="card-grid" *ngFor="let card of cardAge4;">
+                    <app-deck-builder-card [card]="card" [cardHeight]="cardHeight"
+                        [hideTick]="true"></app-deck-builder-card>
+                </div>
+            </div>
+        </div>
+        <div class="spinner" [hidden]="progress == 100">
+            <mat-progress-spinner [value]="progress"></mat-progress-spinner>
+        </div>
+    </div>
+    <p class="deck-name">The deck part is incomplete, it has some missing cards and some cards are wrong, especially the DE civs. It takes time to complete. If you see some problems, please
+        contact me via discord and send me your replay, my name is Jia-Ho Jian (Canyougiant).</p>
+</div>

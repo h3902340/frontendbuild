@@ -1,0 +1,818 @@
+@font-face {
+  font-family: 'Kirsty';
+  src: url('../../../../assets/fonts/kirsty rg.otf');
+}
+
+/* Desktop */
+.desktop-header {
+  background: #22c1c3;
+  background: -moz-linear-gradient(0deg, rgba(34, 193, 195, 0) 0%, rgba(37, 37, 37, 0.8352591036) 34%, rgba(37, 37, 37, 0.9360994398) 60%, rgb(37, 37, 37) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(34, 193, 195, 0) 0%, rgba(37, 37, 37, 0.8352591036) 34%, rgba(37, 37, 37, 0.9360994398) 60%, rgb(37, 37, 37) 100%);
+  background: linear-gradient(0deg, rgba(34, 193, 195, 0) 0%, rgba(37, 37, 37, 0.8352591036) 34%, rgba(37, 37, 37, 0.9360994398) 60%, rgb(37, 37, 37) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#22c1c3", endColorstr="#252525", GradientType=1);
+  margin-bottom: clamp(2rem, 5vw, 15rem);
+}
+
+.desktop-header .steam-login {
+  background: linear-gradient(180deg, #789705 0%, #556c04 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-right: 5px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  padding-right: 15px;
+  padding-block: 10px;
+  border-radius: 6px;
+}
+
+.desktop-header .steam-login span {
+  color: rgba(255, 255, 255, .7);
+  text-shadow: 1px 1px 2px 0px rgba(0, 0, 0, .25);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  font-family: "Inter", sans-serif
+}
+
+.desktop-header .steam-login svg {
+  margin-inline: 6px;
+  width: auto;
+  height: 22px !important
+}
+
+.desktop-header .steam-login:hover {
+  background: #ffc100
+}
+
+.desktop-header .steam-login:hover span {
+  color: #000
+}
+
+.desktop-header .steam-login:hover svg path {
+  fill: #000
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  align-items: center;
+  padding: 0.2%;
+}
+
+.brand-title::before {
+  content: "Free Food Party";
+  text-align: center;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: Kirsty;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: linear-gradient(180deg, #FFF 63.02%, rgba(255, 255, 255, 0.00) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-variant: small-caps;
+}
+
+.live-container {
+  display: flex;
+  margin-bottom: auto; /* Pushes image to the top */
+  margin-right: 2%;
+  margin-left: 1%;
+  margin-top: 0.1%;
+}
+
+.offline-container {
+  display: none;
+  margin-left: 2%;
+}
+
+.live {
+  display: flex;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+.offline {
+  display: none;
+}
+
+.active-link {
+  text-decoration: underline;
+}
+
+.top-left {
+  width: 16%;
+  overflow: hidden;
+}
+
+.steam-logged-btn {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 10px;
+  padding-left: 4%;
+  padding-right: 6%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  gap: 5%;
+  white-space: nowrap;
+}
+
+.steam-logged-btn:hover {
+  background: #ffc100;
+  cursor: pointer;
+}
+
+.steam-avatar {
+  height: auto;
+  width: auto;
+  max-width: 1.8rem;
+  max-height: 1.8rem;
+}
+
+.profile-text {
+  color: #fff;
+  font-family: "Passion One";
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-style: normal;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding-left: 8%;
+}
+
+.dark-btn {
+  background: #303030;
+  padding-inline: 20px;
+  border-radius: 14px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, .25) inset;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+}
+
+.dark-btn span {
+  color: #ffc100;
+  font-family: "Passion One", cursive;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000
+}
+
+.dark-btn img {
+  margin-inline: 0px 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.dark-btn:hover {
+  background: #ffc100
+}
+
+.dark-btn:hover span {
+  color: #fff;
+  text-shadow: none
+}
+
+.bottom-row {
+  display: flex;
+  align-items: center;
+}
+
+.bottom-left {
+  width: 18%;
+}
+
+.bottom-right {
+  flex: 1;
+}
+
+.aoe_logo {
+  margin-left: 10%;
+  max-width: 45%;
+}
+
+.desktop-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.navbar-left, 
+.navbar-right {
+  display: flex;
+  align-items: center;
+  padding-top: 0.5%;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+.navbar-left {
+  height: 50px;
+  background: #ffc100;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, .25) inset;
+  width: 75%;
+  padding-top: 0.5%;
+}
+
+.navbar-brand {
+  margin-left: -6%;
+  display: inline-block;
+  width: 16%;
+  min-width: 15%;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+
+.navigation-bar {
+  all: unset;
+  width: 100%;
+  height: 50px;
+  border: 0px solid red;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3%;
+}
+
+.menu-tab {
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-family: "Odibee Sans", cursive;
+  font-variant: normal;
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+  background-color: #00000000;
+}
+
+.menu-tab:hover,
+.dropdown:hover .menu-tab {
+  color: #000;
+  text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+}
+
+.dropdown {
+  float: left;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fcbd00;
+  min-width: 170px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  display: block;
+  text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.menu-option {
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-family: "Odibee Sans", cursive;
+  font-variant: normal;
+  font-size: 24px;
+  line-height: 1;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+  background-color: #00000000;
+  margin-top: 10px;
+}
+
+.menu-option-dev {
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  color: #909090;
+  font-family: "Odibee Sans", cursive;
+  font-variant: normal;
+  font-size: 24px;
+  line-height: 1;
+  font-style: normal;
+  font-weight: 400;
+  background-color: #00000000;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.menu-option:hover {
+  color: #000;
+  text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+  background-color: #fedc76;
+}
+
+.desktop-header li.nav-items {
+  line-height: 1;
+  margin-right: 25px
+}
+
+.desktop-header nav-items a {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-family: "Odibee Sans", cursive;
+  font-variant: normal;
+  font-size: 30px;
+  line-height: 1;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000
+}
+
+.desktop-header a:hover {
+  color: #000;
+  text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff
+}
+
+.desktop-header li.nav-items:last-child {
+  margin-right: 0px
+}
+
+.desktop-header .navbar-right {
+  height: 50px;
+  width: 25%
+}
+
+.desktop-header .navbar-right .navbar {
+  all: unset;
+  width: 100%;
+  height: 50px;
+  border: 0px solid red;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.desktop-header li.nav-items {
+  line-height: 1;
+  margin-right: 50px
+}
+
+.desktop-header li.nav-items a {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-family: "Odibee Sans", cursive;
+  font-variant: normal;
+  font-size: 30px;
+  font-style: normal;
+  line-height: 1;
+  font-weight: 400;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000
+}
+
+.desktop-header li.nav-items a:hover {
+  color: #ffc100;
+}
+
+.desktop-header li.nav-items:last-child {
+  margin-right: 0px
+}
+
+/* Mobile */
+.mobile-header {
+  background: -moz-linear-gradient(0deg, rgba(34, 193, 195, 0) 0%, rgba(37, 37, 37, 0.8352591036) 34%, rgba(37, 37, 37, 0.9360994398) 60%, rgb(37, 37, 37) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(34, 193, 195, 0) 0%, rgba(37, 37, 37, 0.8352591036) 34%, rgba(37, 37, 37, 0.9360994398) 60%, rgb(37, 37, 37) 100%);
+  background: linear-gradient(0deg, rgba(34, 193, 195, 0) 0%, rgba(37, 37, 37, 0.8352591036) 34%, rgba(37, 37, 37, 0.9360994398) 60%, rgb(37, 37, 37) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#22c1c3", endColorstr="#252525", GradientType=1);
+  width: 100%;
+  display: none;
+}
+
+.mobile-top {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  height: 5rem;
+}
+
+.mobile-logo {
+  display: flex;
+  height: 100%;
+}
+
+.mobile-logo img:hover {
+  transform: scale(1.1);
+}
+
+.menu-toggle {
+  background: transparent;
+  border: none; /* Remove the button's border */
+  outline: none; /* Remove the button's outline */
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.menu-toggle img {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.mobile-header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.mobile-middle {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.mobile-middle .live-container {
+  margin-left: 5%;
+  padding: 2%;
+} 
+
+.mobile-middle .brand-title::before {
+  content: "FFP";
+  text-align: center;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: Kirsty;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: linear-gradient(180deg, #FFF 63.02%, rgba(255, 255, 255, 0.00) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: #22c1c3;
+}
+
+.mobile-live {
+  display: flex;
+}
+
+.mobile-offline {
+  display: none;
+}
+
+.mobile-header .navbar-brand img {
+  max-width: 100%
+}
+
+.offcanvas {
+  display:flex;
+  background: #252525;
+  color: #fff;
+  text-align: center;
+}
+
+.offcanvas-header {
+  justify-content: flex-end;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #ffc100, transparent);
+}
+
+.btn-close {
+  background: rgba(0, 0, 0, 0) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+  border: 0
+}
+
+.mobile-header .navbar-brand {
+  max-width: 4rem;
+  max-height: 4rem;
+  width: auto;
+  height: auto;
+  margin-left: 0.5%;
+}
+
+.offcanvas-body {
+  color: #fff;
+}
+
+.mobile-navbar {
+  all: unset;
+  display: block;
+  width: 100%;
+}
+
+.mobile-header .menu-tab {
+  all: unset;
+  width: 100%;
+  list-style: none;
+  display: block;
+  text-align: left;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-family: "Odibee Sans", cursive;
+  font-variant: normal;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+.mobile-header .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #252525;
+  min-width: 8rem;
+  z-index: 10;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+.mobile-header .dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  display: block;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.mobile-navbar.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.mobile-socials {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.mobile-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.mobile-extra {
+  display: flex;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.mobile-extra a {
+  display: flex;
+}
+
+.mobile-header .steam-logged-btn {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 10px;
+  padding-left: 8%;
+  padding-right: 12%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  gap: 4%;
+  white-space: nowrap;
+}
+
+.mobile-header .profile-avatar {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-left: 0.3rem;
+  -webkit-transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+  transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+/* Steam login */
+.steambutton {
+  background-color: #6f9f31;
+  width: 160px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-left: 0.5%;
+  transform: translate(0, -50%);
+}
+
+.mobile-header .steambutton {
+  background-color: #6f9f31;
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-left: 0.5%;
+  transform: translate(-50%, 0);
+  margin-bottom: 30px;
+}
+
+
+.steambutton span {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: bold;
+  width: 75%;
+  font-size: 10px;
+  text-transform: uppercase;
+  left: 0;
+  -webkit-transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+  transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+.steambutton span,
+.steambutton .icon {
+  display: block;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+}
+
+.steambutton .icon .fa {
+  font-size: 20px;
+  line-height: 30px;
+  -webkit-transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4), height 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4), height 0.25s ease;
+}
+
+.steambutton .icon {
+  width: 25%;
+  right: 0;
+  -webkit-transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+  transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+.steambutton span,
+.steambutton .icon {
+  display: block;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 10px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+
+.steambutton span:after {
+  content: '';
+  background-color: #5d8628;
+  width: 1px;
+  height: 70%;
+  position: absolute;
+  top: 15%;
+  right: -1px;
+}
+
+.steambutton.success span,
+.steambutton:hover span {
+  left: -72%;
+  opacity: 0;
+}
+
+.steambutton.success .icon,
+.steambutton:hover .icon {
+  width: 100%;
+}
+
+.steambutton.success .icon .fa,
+.steambutton:hover .icon .fa {
+  font-size: 20px;
+}
+/* End of Steam Login */
+
+@media only screen and (max-width: 1400px) {
+  .brand-title::before {
+    font-size: 2.5rem;
+  }
+
+  .top-right {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 16%;
+  }
+
+  .live {
+    width: 80%;
+  }
+
+  .dark-btn {
+    background: transparent;
+    box-shadow: none;
+    margin-left: 0px;
+  }
+
+  .dark-btn span {
+    display: none;
+  }
+
+  .dark-btn img {
+    margin: auto !important;
+  }
+
+  .desktop-header .profile-avatar {
+    display: none;
+  }
+
+  .aoe_logo {
+    margin-left: 10%;
+    max-width: 60%;
+  }
+
+  .menu-tab {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .brand-title::before {
+    content: "FFP";
+    font-size: 2rem;
+  }
+
+  .menu-tab {
+    font-size: 1.5rem;
+  }
+
+  .live {
+    margin-top: 5%;
+  }
+
+  .steambutton {
+    transform: translate(0, -50%) scale(0.8);
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .desktop-header {
+    display: none;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+}

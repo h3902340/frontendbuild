@@ -1,0 +1,124 @@
+.video {
+    width: 100%;
+    min-width: 95vw;
+}
+
+.media-icon {
+    position: absolute;
+    height: 16%;
+    width: 16%;
+    bottom: 0.8rem;
+    margin-left: 5%;
+}
+
+.main-heading::after {
+    width: 120%;
+}
+
+.streamer-container {
+    display: flex;
+    margin-top: 1%;
+    gap: 1%;
+    justify-content: space-between;
+}
+
+.video-list {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.streamer {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    margin-top: 1%;
+}
+
+.streamer:hover {
+    cursor: pointer;
+}
+
+.streamer_selected {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    margin-top: 1%;
+    border: 1px solid #ffc100;
+}
+
+.streamer-selected:hover {
+    cursor: pointer;
+}
+
+.bottom-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 3%;
+    border-radius: 0 0 15px 15px;
+    align-items: center;
+}
+
+.thumbnail {
+    border-radius: 15px 15px 0 0;
+}
+
+.avatar {
+    display: flex;
+    max-width: 20%;
+    max-height: 20%;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    object-fit: contain;
+    align-items: center;
+    margin-right: 0.5rem;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    color: white;
+    font-family: 'arial';
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.1;
+    -webkit-line-clamp: 2;
+    min-height: 2.2rem;
+}
+
+.content-creator {
+    overflow: hidden;
+    color: #aaaaaa;
+    font-family: 'arial';
+    font-size: 1rem;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+}
+
+.grey-text {
+    overflow: hidden;
+    color: #aaaaaa;
+    font-family: 'arial';
+    font-size: 1rem;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+}
+
+@media only screen and (max-width: 500px) {
+    .title {
+        font-size: 0.7rem;
+        min-height: 1.6rem;
+    }
+
+    .content-creator {
+        font-size: 0.7rem;
+    }
+
+    .grey-text {
+        font-size: 0.7rem;
+    }
+}

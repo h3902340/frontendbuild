@@ -1,0 +1,13 @@
+@import '../shared-styles.css';
+
+.player-name-container {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.elo-div {
+    display: flex;
+    flex: 1;
+}

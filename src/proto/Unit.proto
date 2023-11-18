@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package backend;
+option java_package = "com.aoe3leader.backend.proto";
+option java_outer_classname = "Unit";
+
+message UnitSave {
+    string selectedLanguage = 1;
+    int32 selectedIdCiv = 2;
+    string selectedUnitType = 3;
+}

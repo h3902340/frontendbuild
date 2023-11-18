@@ -1,0 +1,39 @@
+.totalGame {
+    font-size: 8px;
+}
+
+.very-green {
+    color: #00ff00;
+}
+
+.light-green {
+    color: #90EE90;
+    /* LightGreen */
+}
+
+.light-red {
+    color: #FF6347;
+    /* Tomato */
+}
+
+.very-red {
+    color: #ff0000;
+}
+
+.filter-row {
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.align-right {
+    display: flex;
+    margin-left: auto;
+}
+
+@media (max-width: 600px) {
+    .align-right {
+        width: 100%;
+    }
+}

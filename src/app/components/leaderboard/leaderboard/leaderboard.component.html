@@ -1,0 +1,60 @@
+<div class="container tab-content">
+  <div style="display: flex; justify-content: start;">
+    <h1 class="main-heading">Leaderboards</h1>
+    <p class="last-update-text">Last Update: {{lastUpdateDateString}}</p>
+    <!-- <app-player-count style="align-self: flex-end;"></app-player-count> -->
+  </div>
+  <div class="tab-content-top">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#solo-tab-pane" type="button"
+          role="tab" aria-controls="solo-tab-pane" aria-selected="true" (click)="onTabChanged(1)">Solo</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dm-tab" data-bs-toggle="tab" data-bs-target="#2v2-tab-pane" type="button"
+          role="tab" aria-controls="ew-team-tab-pane" aria-selected="false" (click)="onTabChanged(8)">2v2</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dm-tab" data-bs-toggle="tab" data-bs-target="#3v3-tab-pane" type="button"
+          role="tab" aria-controls="ew-team-tab-pane" aria-selected="false" (click)="onTabChanged(9)">3v3</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dm-tab" data-bs-toggle="tab" data-bs-target="#4v4-tab-pane" type="button"
+          role="tab" aria-controls="ew-team-tab-pane" aria-selected="false" (click)="onTabChanged(10)">4v4</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="team-tab" data-bs-toggle="tab" data-bs-target="#team-tab-pane" type="button"
+          role="tab" aria-controls="team-tab-pane" aria-selected="false" (click)="onTabChanged(2)">Team</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dm-tab" data-bs-toggle="tab" data-bs-target="#blitz-tab-pane" type="button"
+          role="tab" aria-controls="ew-team-tab-pane" aria-selected="false" (click)="onTabChanged(7)">Blitz</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="treaty-tab" data-bs-toggle="tab" data-bs-target="#treaty-tab-pane" type="button"
+          role="tab" aria-controls="treaty-tab-pane" aria-selected="false" (click)="onTabChanged(3)">Treaty</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dm-tab" data-bs-toggle="tab" data-bs-target="#dm-tab-pane" type="button" role="tab"
+          aria-controls="dm-tab-pane" aria-selected="false" (click)="onTabChanged(4)">DM</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dm-tab" data-bs-toggle="tab" data-bs-target="#ew-solo-tab-pane" type="button"
+          role="tab" aria-controls="ew-solo-tab-pane" aria-selected="false" (click)="onTabChanged(5)">EW Solo</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dm-tab" data-bs-toggle="tab" data-bs-target="#ew-team-tab-pane" type="button"
+          role="tab" aria-controls="ew-team-tab-pane" aria-selected="false" (click)="onTabChanged(6)">EW Team</button>
+      </li>
+    </ul>
+    <app-searchbar class="search-wrapper" (searchChanged)="onSearchChanged($event)"></app-searchbar>
+  </div>
+  <div class="tab-content dark-bg-no-shadow" id="myTabContent">
+    <div class="tab-heading-row">
+      <h2>{{getTitleForGameMode(gameMode)}}<sup>{{getSuperscriptForGameMode(gameMode)}}</sup></h2>
+      <app-box-leaderboard-stats [gameMode]="gameMode"></app-box-leaderboard-stats>
+    </div>
+    <app-rank-list [gameMode]="gameMode" [search]="search"
+      (onLastUpdateDateChanged)="onLastUpdateTimeChanged($event)"></app-rank-list>
+  </div>
+</div>

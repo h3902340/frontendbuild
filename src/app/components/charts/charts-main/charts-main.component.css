@@ -1,0 +1,12 @@
+.big-section {
+    display: flex;
+    justify-content: center;
+    /* Centre les éléments horizontalement */
+    align-items: center;
+    /* Centre les éléments verticalement */
+    width: 100%;
+    /* Vous pouvez définir une autre largeur si nécessaire */
+    font-family: "Trajan", serif;
+    font-variant: small-caps;
+    transform: translate3d(0, 0, 0);
+}

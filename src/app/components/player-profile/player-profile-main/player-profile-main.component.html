@@ -1,0 +1,11 @@
+<section class="one-column-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <app-player-profile #profile [idPlayer]="idPlayer" [lastUpdateDate]="lastUpdateDate"></app-player-profile>
+        <app-player-matchs #matchs [idPlayer]="idPlayer" [lastUpdateDate]="lastUpdateDate"></app-player-matchs>
+        <app-winrate-and-game-count [idPlayer]="idPlayer"></app-winrate-and-game-count>
+      </div>
+    </div>
+  </div>
+</section>

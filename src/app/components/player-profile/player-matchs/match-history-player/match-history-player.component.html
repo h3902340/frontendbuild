@@ -1,0 +1,36 @@
+<div style="margin-top: 5px; margin-bottom: 5px;" *ngFor="let player of PlayerList">
+  <div class="parent-container">
+    <!-- Player -->
+    <div class="player-name-container">
+      <a [routerLink]="['/profile']" [queryParams]="{idPlayer: player.idPlayer}">
+          <div class="player-name"
+            [class.green]="isWin" [class.red]="!isWin">{{player.playerName}}
+          </div>
+      </a>
+    </div>
+    <!-- No elo - Show no score -->
+    <div class="elo-div" *ngIf="player.elo == null || player.elo == 0"></div>
+    <!-- Show Elo -->
+    <div class="elo-div" *ngIf="player.elo != null && player.elo > 0">
+        <!-- Elo -->
+        <div class="score-text" [class.green]="isWin" [class.red]="!isWin">
+          {{"("+player.elo }}
+          <!-- Arrow -->
+          <div *ngIf="player.eloDiff > 0">
+            <ng-icon name="heroArrowUpRight"></ng-icon>
+          </div>
+          <div *ngIf="player.eloDiff < 0">
+            <ng-icon name="heroArrowDownRight"></ng-icon>
+          </div>
+          <!-- No eloDiff, Show nothing -->
+          <div class="elo-text" *ngIf="player.eloDiff == 0">)</div>
+          <!-- Show eloDiff -->
+          <div class="elo-text" *ngIf="player.eloDiff > 0 || player.eloDiff < 0" >
+            {{ (player.eloDiff > 0 ? player.eloDiff : -player.eloDiff) +")"}}
+          </div>
+      </div>
+    </div>
+    <!-- Flag -->
+    <img class="flag-min" [src]="player.civFlagUrl" alt="..." />
+  </div>
+</div>

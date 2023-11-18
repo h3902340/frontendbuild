@@ -1,0 +1,25 @@
+<h2 class="main-heading">Featured Content <img class="media-icon" src="assets/icons/youtube-white-logo.png"></h2>
+<mat-grid-list class="video-list" [cols]="cols" rowHeight="1:1" gutterSize="1%">
+  <mat-grid-tile class="video" *ngFor="let video of customVideoList">
+    <a href="https://www.youtube.com/watch?v={{video.idVideo}}" target="_blank">
+      <div class="thumbnail-container">
+        <img class="thumbnail" src={{video.thumbnailUrl}}>
+        <div class="duration-overlay">{{toHHMMSS(video.duration)}}</div>
+      </div>
+      <div class="bottom-container">
+        <img class="avatar" src={{video.profileimageurl}}>
+        <div class="title-container">
+          <div class="title responsive-text-ellipsis">{{video.videoTitle}}</div>
+          <div class="content-creator responsive-text-ellipsis">{{video.channelTitle}}</div>
+          <div class="video-info">
+            <div class="grey-text">{{toShortViewCount(video.viewCount) + ' views'}}</div>
+            <!-- <div class="dot grey-text responsive-text"></div> -->
+            <!-- · -->
+            <!-- <div class="grey-text responsive-text-ellipsis"></div> -->
+            <!-- 3 months ago -->
+          </div>
+        </div>
+      </div>
+    </a>
+  </mat-grid-tile>
+</mat-grid-list>
